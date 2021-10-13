@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BTL</string>
+    <string name="content_description">Splash Screen</string>
 </resources>
