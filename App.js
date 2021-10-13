@@ -5,6 +5,18 @@
  * @format
  * @flow strict-local
  */
-console.log("hoang dep trai???"); 
 
-console.log("vu to uyen");
+import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+
+import Login from './src/screen/Login';
+
+const App = () => {
+  return (
+    <NavigationContainer>
+      <Login />
+    </NavigationContainer>
+  );
+};
+
+export default App;
