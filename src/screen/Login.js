@@ -44,9 +44,9 @@ const Login = () => {
           {/* <Icon.Button name="facebook" style = {styles.facebookButton}  background="#3b5998" >
             <Text style={styles.loginButtonTitle}>Login with facebook</Text>
           </Icon.Button> */}
-          <TouchableOpacity style={styles.loginButtonTitle}>
-            <Icon name="facebook-square" size={60} />
-            
+          <TouchableOpacity style={styles.facebookButton}>
+            <Icon name="facebook-square" size={40} style={styles.logoFacebook}/>
+            <Text style={styles.facebookButtonTitle}>Login with facebook</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -116,11 +116,28 @@ const styles = StyleSheet.create({
     color:'white'
   },
 
+  facebookButtonTitle: {
+    fontSize:18,
+    color:'white',
+    justifyContent:'center',
+    alignItems:'center',
+    // marginLeft: 40
+  },
+
+  logoFacebook:{
+    justifyContent:'space-between',
+    left:10,
+    position:"absolute"
+  },
+
   facebookButton: {
+    flexDirection:'row',
     width:300,
     height: 45,
     borderRadius: 6,
-    justifyContent: 'center'
+    alignItems:'center',
+    justifyContent: 'center',
+    backgroundColor:'#4267B2'
   },
 
   line: {
