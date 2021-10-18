@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-const Home = () => {
+const Profile = () => {
   return (
     <View>
-      <Text style={styles.title}>Home</Text>
+      <Text style={styles.title}>Profile</Text>
     </View>
   );
 };
@@ -13,4 +13,4 @@ const styles = StyleSheet.create({
   title: {},
 });
 
-export default Home;
+export default Profile;
