@@ -21,3 +21,9 @@ Chạy câu lệnh
 ```bash
   yarn run server
 ```
+
+hoặc
+
+```bash
+  npm run server
+```
