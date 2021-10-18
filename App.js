@@ -11,7 +11,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import SplashScreen from 'react-native-splash-screen';
 
 import Login from './src/screen/Login';
-import Home from './src/screen/Home';
+import BottomTabs from './src/components/BottomTab';
 
 const App = () => {
   //Hide splash screen on app load
@@ -21,7 +21,7 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <Home />
+      <BottomTabs />
     </NavigationContainer>
   );
 };
