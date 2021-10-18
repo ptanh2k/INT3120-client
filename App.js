@@ -11,6 +11,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import SplashScreen from 'react-native-splash-screen';
 
 import Login from './src/screen/Login';
+import Home from './src/screen/Home';
 
 const App = () => {
   //Hide splash screen on app load
@@ -20,7 +21,7 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <Login />
+      <Home />
     </NavigationContainer>
   );
 };
