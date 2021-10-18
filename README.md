@@ -8,5 +8,16 @@
 - React native vector icons:
   https://www.npmjs.com/package/react-native-vector-icons
 
-Tên icon: https://oblador.github.io/react-native-vector-icons/
+- json-server:
+  https://github.com/typicode/json-server
+
+Tên icon: https://oblador.github.io/react-native-vector-icons/ <br />
 Hiện dùng: Material, Ant Design, Font Awesome 5
+
+### Chạy json-server
+
+Chạy câu lệnh
+
+```bash
+  yarn run server
+```
