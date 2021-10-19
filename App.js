@@ -12,6 +12,9 @@ import SplashScreen from 'react-native-splash-screen';
 
 import Login from './src/screen/Login';
 import BottomTabs from './src/components/BottomTab';
+import Search from './src/screen/Search';
+import { createStackNavigator } from '@react-navigation/stack';
+const Stack = createStackNavigator();
 
 const App = () => {
   //Hide splash screen on app load
@@ -21,8 +24,19 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <BottomTabs />
+      <Stack.Navigator screenOptions={{
+        headerShown: false
+      }}>
+      
+        {/* <BottomTabs /> */}
+        <Stack.Screen name="login" component={Login} />
+        <Stack.Screen name="BottomTabs" component={BottomTabs} />
+        <Stack.Screen name="Search" component={Search} />
+
+      </Stack.Navigator>
     </NavigationContainer>
+    
+    
   );
 };
 
