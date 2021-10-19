@@ -64,16 +64,13 @@ const Login = ({navigation}) => {
             />
           </View>
           <TouchableOpacity style={styles.loginButton}
-          onPress={()=>{
-          
-            for (var i = 0; i < account.length; i++) {
-              if (account[i]['user'] == mail && account[i]['password'] == pass) {setLogin(!logincheck)} 
-            }
-            setLogin(true)
-            console.log({logincheck})
-            if (logincheck == true){
+          onPress={()=>{            
+      
+            if (account[0]['user'] == mail && account[0]['password'] == pass) {
               navigation.navigate("BottomTabs")
-            }
+              setLogin(!logincheck)
+            } 
+            
             else {
               Alert.alert("invalid!!!")
             }
@@ -156,6 +153,20 @@ const styles = StyleSheet.create({
   loginButtonTitle: {
     fontSize: 18,
     color: 'white',
+  },
+
+  facebookButtonTitle: {
+    fontSize:18,
+    color:'white',
+    justifyContent:'center',
+    alignItems:'center',
+    // marginLeft: 40
+  },
+
+  logoFacebook:{
+    justifyContent:'space-between',
+    left:10,
+    position:"absolute"
   },
 
   facebookButtonTitle: {
