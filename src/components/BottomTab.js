@@ -7,7 +7,7 @@ import ProfileStack from '../routes/ProfileStack';
 
 const Tab = createBottomTabNavigator();
 
-const BottomTabs = () => {
+const BottomTabs = ({navigation}) => {
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -38,5 +38,7 @@ const BottomTabs = () => {
     </Tab.Navigator>
   );
 };
+
+
 
 export default BottomTabs;
