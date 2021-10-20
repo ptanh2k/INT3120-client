@@ -1,16 +1,23 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
+
+import Songs from '../components/song/Songs';
+import SongsProvider from '../context/SongsContext';
 
 const Home = () => {
   return (
-    <View>
-      <Text style={styles.title}>hoang dep trai</Text>
+    <View style={styles.container}>
+      <SongsProvider>
+        <Songs />
+      </SongsProvider>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  title: {},
+  container: {
+    flex: 1,
+  },
 });
 
 export default Home;
