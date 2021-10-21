@@ -183,6 +183,20 @@ const styles = StyleSheet.create({
     position:"absolute"
   },
 
+  facebookButtonTitle: {
+    fontSize:18,
+    color:'white',
+    justifyContent:'center',
+    alignItems:'center',
+    // marginLeft: 40
+  },
+
+  logoFacebook:{
+    justifyContent:'space-between',
+    left:10,
+    position:"absolute"
+  },
+
   facebookButton: {
     flexDirection:'row',
     width:300,
