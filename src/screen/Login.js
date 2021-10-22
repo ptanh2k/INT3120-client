@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -9,13 +9,12 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Alert,
-  
 } from 'react-native';
-import BottomTabs  from '../components/BottomTab';
+import BottomTabs from '../components/BottomTab';
 import Icon from 'react-native-vector-icons/AntDesign';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import symbolicateStackTrace from 'react-native/Libraries/Core/Devtools/symbolicateStackTrace';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
 const Divider = props => {
   return (
     <View {...props}>
@@ -27,7 +26,6 @@ const Divider = props => {
 };
 
 const Login = ({navigation}) => {
-
   const [mail, setMail] = useState('');
   const [pass, setPass] = useState('');
   const [isSecureEntry, setIsSecureEntry] = useState(true);
@@ -63,30 +61,31 @@ const Login = ({navigation}) => {
               defaultValue={pass}
             />
           </View>
-          <TouchableOpacity style={styles.loginButton}
-          onPress={()=>{            
-      
-            if (account[0]['user'] == mail && account[0]['password'] == pass) {
-              navigation.navigate("BottomTabs")
-              setLogin(!logincheck)
-            } 
-            
-            else {
-              Alert.alert("invalid!!!")
-            }
-          }}>
+          <TouchableOpacity
+            style={styles.loginButton}
+            onPress={() => {
+              if (account[0].user === mail && account[0].password === pass) {
+                navigation.navigate('BottomTabs');
+                setLogin(!logincheck);
+              } else {
+                Alert.alert('invalid!!!');
+              }
+            }}>
             {/* chuyen den BottomTab */}
-           
+
             <Text style={styles.loginButtonTitle}>LOGIN</Text>
           </TouchableOpacity>
 
           <Divider style={styles.divider} />
 
           <TouchableOpacity style={styles.facebookButton}>
-            <Icon name="facebook-square" size={40} style={styles.logoFacebook}/>
+            <Icon
+              name="facebook-square"
+              size={40}
+              style={styles.logoFacebook}
+            />
             <Text style={styles.facebookButtonTitle}>Login with facebook</Text>
           </TouchableOpacity>
-
         </View>
       </View>
     </TouchableWithoutFeedback>
@@ -156,55 +155,27 @@ const styles = StyleSheet.create({
   },
 
   facebookButtonTitle: {
-    fontSize:18,
-    color:'white',
-    justifyContent:'center',
-    alignItems:'center',
+    fontSize: 18,
+    color: 'white',
+    justifyContent: 'center',
+    alignItems: 'center',
     // marginLeft: 40
   },
 
-  logoFacebook:{
-    justifyContent:'space-between',
-    left:10,
-    position:"absolute"
-  },
-
-  facebookButtonTitle: {
-    fontSize:18,
-    color:'white',
-    justifyContent:'center',
-    alignItems:'center',
-    // marginLeft: 40
-  },
-
-  logoFacebook:{
-    justifyContent:'space-between',
-    left:10,
-    position:"absolute"
-  },
-
-  facebookButtonTitle: {
-    fontSize:18,
-    color:'white',
-    justifyContent:'center',
-    alignItems:'center',
-    // marginLeft: 40
-  },
-
-  logoFacebook:{
-    justifyContent:'space-between',
-    left:10,
-    position:"absolute"
+  logoFacebook: {
+    justifyContent: 'space-between',
+    left: 10,
+    position: 'absolute',
   },
 
   facebookButton: {
-    flexDirection:'row',
-    width:300,
+    flexDirection: 'row',
+    width: 300,
     height: 45,
     borderRadius: 6,
-    alignItems:'center',
+    alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor:'#4267B2'
+    backgroundColor: '#4267B2',
   },
 
   line: {
@@ -229,13 +200,15 @@ const styles = StyleSheet.create({
   },
 });
 
-const account = 
-  [{
-    user : "admin",
-    password: "admin",
+const account = [
+  {
+    user: 'admin',
+    password: 'admin',
   },
   {
-    user : "hoang",
-    password: "hoang",
-  }]
+    user: 'hoang',
+    password: 'hoang',
+  },
+];
+
 export default Login;
