@@ -13,6 +13,7 @@ import Login from './src/screen/Login';
 import BottomTabs from './src/components/BottomTab';
 import Search from './src/screen/Search';
 import {createStackNavigator} from '@react-navigation/stack';
+import Profile from './src/screen/Profile';
 const Stack = createStackNavigator();
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
         <Stack.Screen name="login" component={Login} />
         <Stack.Screen name="BottomTabs" component={BottomTabs} />
         <Stack.Screen name="Search" component={Search} />
+        <Stack.Screen name="profile" component={Profile} />
       </Stack.Navigator>
     </NavigationContainer>
   );

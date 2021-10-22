@@ -1,12 +1,19 @@
 import React from 'react';
 import Icon from "react-native-vector-icons/AntDesign"
 import {View, Text, TextInput, StyleSheet, TouchableWithoutFeedback, Keyboard} from 'react-native'
-
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import home from "./Home"
+import {TouchableRipple} from "react-native-paper"
 const Search = ({navigation}) => {
     return(
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style = {styles.container}>
                 <View style={styles.up}>
+                    <TouchableRipple onPress={()=>{
+                        navigation.navigate("Home")
+                    }}>
+                        <Icon name="arrowleft" size={35} style={styles.titleBack} />
+                    </TouchableRipple>
                     <Text style={styles.title}>Search</Text>
                 </View>
                 <View style={styles.down}>
@@ -30,7 +37,8 @@ const styles = StyleSheet.create({
 
     up:{
         flex: 1,
-        backgroundColor:'black'
+        backgroundColor:'black',
+        flexDirection:"row"
     },
     down: {
         flex: 9,
@@ -47,7 +55,9 @@ const styles = StyleSheet.create({
     title:{
         fontSize:30,
         color:'white',
-        marginTop:20
+        marginTop:20, 
+        marginLeft: 20,
+    
     },
 
     iconSearch: {
@@ -63,6 +73,13 @@ const styles = StyleSheet.create({
         backgroundColor:'#6d6e6f',
         marginTop: 10,
         borderRadius:3
+    }, 
+
+    titleBack: {
+        fontSize:30,
+        color:'white',
+        marginTop:27, 
+        marginLeft: 10
     }
 
 })
