@@ -78,7 +78,7 @@ const Profile = () => {
           }}>
           <View style={styles.menuItem}>
             <Icon name="heart" size={20} style={styles.heartIcon} />
-            <Text style={styles.heartText}>tym</Text>
+            <Text style={styles.heartText}>Likes</Text>
           </View>
         </TouchableRipple>
 
