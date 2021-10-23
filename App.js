@@ -14,6 +14,7 @@ import BottomTabs from './src/components/BottomTab';
 import Search from './src/screen/Search';
 import {createStackNavigator} from '@react-navigation/stack';
 import Profile from './src/screen/Profile';
+import HomeStack from './src/routes/HomeStack';
 const Stack = createStackNavigator();
 
 const App = () => {
@@ -31,8 +32,9 @@ const App = () => {
         {/* <BottomTabs /> */}
         <Stack.Screen name="login" component={Login} />
         <Stack.Screen name="BottomTabs" component={BottomTabs} />
-        <Stack.Screen name="Search" component={Search} />
         <Stack.Screen name="profile" component={Profile} />
+        <Stack.Screen name="HomeStack" component={HomeStack} />
+        <Stack.Screen name="Search" component={Search} />
       </Stack.Navigator>
     </NavigationContainer>
   );

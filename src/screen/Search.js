@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     flex: 1,
-    borderRadius: 3,
+    borderRadius: 10,
     backgroundColor: '#6d6e6f',
     marginLeft: 45,
   },
@@ -73,11 +73,13 @@ const styles = StyleSheet.create({
   },
   box: {
     flex: 1,
-    width: 400,
+    width: '50%',
     height: 45,
     backgroundColor: '#6d6e6f',
     marginTop: 10,
-    borderRadius: 3,
+    borderRadius: 10,
+    marginLeft: 15,
+    marginRight: 15,
   },
 
   titleBack: {

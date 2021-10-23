@@ -39,6 +39,4 @@ const BottomTabs = ({navigation}) => {
   );
 };
 
-
-
 export default BottomTabs;
