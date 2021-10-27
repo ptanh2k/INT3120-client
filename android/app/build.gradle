@@ -207,6 +207,8 @@ dependencies {
 
     implementation project(':react-native-safe-area-context')
 
+    implementation 'com.google.android.gms:play-services-auth:19.2.0'
+
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/";
         debugImplementation files(hermesPath + "hermes-debug.aar")
@@ -230,3 +232,4 @@ project.ext.vectoricons = [
 ]
 
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+
