@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -10,6 +10,13 @@ import {
   TouchableWithoutFeedback,
   Alert,
 } from 'react-native';
+import {
+  GoogleSignin,
+  statusCodes,
+  GoogleSigninButton,
+} from '@react-native-google-signin/google-signin';
+
+import {ANDROID_CLIENT_ID, WEB_CLIENT_ID} from '@env';
 
 import Icon from 'react-native-vector-icons/AntDesign';
 
@@ -28,6 +35,59 @@ const Login = ({navigation}) => {
   const [pass, setPass] = useState('');
   const [isSecureEntry, setIsSecureEntry] = useState(true);
   const [logincheck, setLogin] = useState(false);
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    GoogleSignin.configure({
+      webClientId: WEB_CLIENT_ID,
+      androidClientId: ANDROID_CLIENT_ID,
+      forceCodeForRefreshToken: true,
+      offlineAccess: true,
+    });
+    isSignedIn();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const loginWithGoogle = async () => {
+    try {
+      await GoogleSignin.hasPlayService();
+      const userInfo = await GoogleSignin.signIn();
+      setUser(userInfo);
+    } catch (error) {
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        console.log('Sign in cancelled');
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        console.log('Signing in');
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        console.log('Play service not available');
+      } else {
+        console.log('Some other error');
+      }
+    }
+  };
+
+  const isSignedIn = async () => {
+    const isSigned = await GoogleSignin.isSignedIn();
+    if (!!isSigned) {
+      getCurrentUserInfo();
+    } else {
+      console.log('Please login');
+    }
+  };
+
+  const getCurrentUserInfo = async () => {
+    try {
+      const userInfo = await GoogleSignin.signInSilently();
+      setUser(userInfo);
+    } catch (error) {
+      if (error.code === statusCodes.SIGN_IN_REQUIRED) {
+        console.log('User has not signed in yet');
+      } else {
+        console.log('Something went wrong. Unable to get info');
+      }
+    }
+  };
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
@@ -45,7 +105,7 @@ const Login = ({navigation}) => {
               textContentType="emailAddress"
               keyboardType="email-address"
               placeholder="Enter your email"
-              onChangeText={mail => setMail(mail)}
+              onChangeText={text => setMail(text)}
               defaultValue={mail}
             />
           </View>
@@ -55,7 +115,7 @@ const Login = ({navigation}) => {
               style={styles.textInput}
               placeholder="Enter your password"
               secureTextEntry={isSecureEntry}
-              onChangeText={pass => setPass(pass)}
+              onChangeText={text => setPass(text)}
               defaultValue={pass}
             />
           </View>
@@ -84,6 +144,12 @@ const Login = ({navigation}) => {
             />
             <Text style={styles.facebookButtonTitle}>Login with facebook</Text>
           </TouchableOpacity>
+          <GoogleSigninButton
+            style={styles.googleSigninButton}
+            size={GoogleSigninButton.Size.Wide}
+            color={GoogleSigninButton.Color.Dark}
+            onPress={loginWithGoogle}
+          />
         </View>
       </View>
     </TouchableWithoutFeedback>
@@ -157,7 +223,6 @@ const styles = StyleSheet.create({
     color: 'white',
     justifyContent: 'center',
     alignItems: 'center',
-    // marginLeft: 40
   },
 
   logoFacebook: {
@@ -174,6 +239,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#4267B2',
+  },
+
+  googleSigninButton: {
+    marginTop: 10,
+    width: 300,
+    height: 45,
   },
 
   line: {

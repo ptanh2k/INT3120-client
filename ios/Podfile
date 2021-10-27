@@ -16,6 +16,8 @@ target 'BTL' do
 
   pod 'react-native-safe-area-context', :path => '../node_modules/react-native-safe-area-context'
 
+  pod 'RNGoogleSignin', :path => '../node_modules/@react-native-google-signin/google-signin'
+
   target 'BTLTests' do
     inherit! :complete
     # Pods for testing
