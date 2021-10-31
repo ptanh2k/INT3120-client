@@ -13,8 +13,10 @@ import Login from './src/screen/Login';
 import BottomTabs from './src/components/BottomTab';
 import Search from './src/screen/Search';
 import {createStackNavigator} from '@react-navigation/stack';
-import Profile from './src/screen/Profile';
 import HomeStack from './src/routes/HomeStack';
+import ProfileStack from './src/routes/ProfileStack';
+import PlayScreen from './src/screen/PlayScreen';
+
 const Stack = createStackNavigator();
 
 const App = () => {
@@ -29,12 +31,12 @@ const App = () => {
         screenOptions={{
           headerShown: false,
         }}>
-        {/* <BottomTabs /> */}
         <Stack.Screen name="login" component={Login} />
         <Stack.Screen name="BottomTabs" component={BottomTabs} />
-        <Stack.Screen name="profile" component={Profile} />
+        <Stack.Screen name="Profile" component={ProfileStack} />
         <Stack.Screen name="HomeStack" component={HomeStack} />
         <Stack.Screen name="Search" component={Search} />
+        <Stack.Screen name="Play" component={PlayScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
