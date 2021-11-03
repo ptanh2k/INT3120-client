@@ -11,6 +11,7 @@ buildscript {
         googlePlayServicesAuthVersion = "19.2.0" // <--- use this version or newer
     }
     repositories {
+        jcenter()
         google()
         mavenCentral()
     }

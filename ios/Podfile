@@ -22,6 +22,8 @@ target 'BTL' do
 
   pod 'react-native-track-player', :path => '../node_modules/react-native-track-player'
 
+  pod 'react-native-fbsdk', :path => '../node_modules/react-native-fbsdk'
+
   target 'BTLTests' do
     inherit! :complete
     # Pods for testing

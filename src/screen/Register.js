@@ -52,7 +52,7 @@ const Register = ({navigation}) => {
           <TouchableOpacity
             style={styles.loginButton}
             onPress={() => {
-              navigation.navigate('Login');
+              navigation.navigate('login');
             }}>
             <Text style={styles.loginButtonTitle}>LOGIN</Text>
           </TouchableOpacity>
