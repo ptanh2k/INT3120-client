@@ -4,11 +4,11 @@ import {View, StyleSheet} from 'react-native';
 import Songs from '../components/song/Songs';
 import SongsProvider from '../context/SongsContext';
 
-const Home = () => {
+const Home = ({navigation}) => {
   return (
     <View style={styles.container}>
       <SongsProvider>
-        <Songs />
+        <Songs navigation={navigation} />
       </SongsProvider>
     </View>
   );

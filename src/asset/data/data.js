@@ -5,7 +5,7 @@ const songs = [
     artwork: require('../images/Adore_You_-_Harry_Styles.png'),
     url: 'https://sample-music.netlify.app/death%20bed.mp3',
     duration: 2 * 60 + 53,
-    id: '1',
+    id: 1,
   },
   {
     title: 'bad liar',
@@ -13,7 +13,7 @@ const songs = [
     artwork: require('../images/Adore_You_-_Harry_Styles.png'),
     url: 'https://sample-music.netlify.app/Bad%20Liar.mp3',
     duration: 2 * 60,
-    id: '2',
+    id: 2,
   },
   {
     title: 'faded',
@@ -21,7 +21,7 @@ const songs = [
     artwork: require('../images/Adore_You_-_Harry_Styles.png'),
     url: 'https://sample-music.netlify.app/Faded.mp3',
     duration: 2 * 60,
-    id: '3',
+    id: 3,
   },
   {
     title: 'hate me',
@@ -29,7 +29,7 @@ const songs = [
     artwork: require('../images/Adore_You_-_Harry_Styles.png'),
     url: 'https://sample-music.netlify.app/Hate%20Me.mp3',
     duration: 2 * 60,
-    id: '4',
+    id: 4,
   },
   {
     title: 'Solo',
@@ -37,7 +37,7 @@ const songs = [
     artwork: require('../images/Adore_You_-_Harry_Styles.png'),
     url: 'https://sample-music.netlify.app/Solo.mp3',
     duration: 2 * 60,
-    id: '5',
+    id: 5,
   },
   {
     title: 'without me',
@@ -45,7 +45,7 @@ const songs = [
     artwork: require('../images/Adore_You_-_Harry_Styles.png'),
     url: 'https://sample-music.netlify.app/Without%20Me.mp3',
     duration: 2 * 60,
-    id: '6',
+    id: 6,
   },
 ];
 
