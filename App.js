@@ -16,6 +16,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import HomeStack from './src/routes/HomeStack';
 import ProfileStack from './src/routes/ProfileStack';
 import Player from './src/components/player/Player';
+import Register from './src/screen/Register';
 
 const Stack = createStackNavigator();
 
@@ -37,6 +38,7 @@ const App = () => {
         <Stack.Screen name="HomeStack" component={HomeStack} />
         <Stack.Screen name="Search" component={Search} />
         <Stack.Screen name="Play" component={Player} />
+        <Stack.Screen name="Register" component={Register} />
       </Stack.Navigator>
     </NavigationContainer>
   );

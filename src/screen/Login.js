@@ -10,6 +10,8 @@ import {
   TouchableWithoutFeedback,
   Alert,
 } from 'react-native';
+import {LoginManager} from 'react-native-fbsdk';
+
 import {
   GoogleSignin,
   statusCodes,
@@ -68,6 +70,7 @@ const Login = ({navigation}) => {
 
   const isSignedIn = async () => {
     const isSigned = await GoogleSignin.isSignedIn();
+    // eslint-disable-next-line no-extra-boolean-cast
     if (!!isSigned) {
       getCurrentUserInfo();
     } else {
@@ -136,7 +139,23 @@ const Login = ({navigation}) => {
 
           <Divider style={styles.divider} />
 
-          <TouchableOpacity style={styles.facebookButton}>
+          <TouchableOpacity
+            style={styles.facebookButton}
+            onPress={async () => {
+              try {
+                let result = await LoginManager.logInWithPermissions([
+                  'public_profile',
+                ]);
+                if (result.isCancelled) {
+                  Alert.alert('login was cancelled');
+                } else {
+                  navigation.navigate('BottomTabs');
+                }
+              } catch (error) {
+                Alert.alert('loi:' + error);
+                console.log(error);
+              }
+            }}>
             <Icon
               name="facebook-square"
               size={40}
@@ -150,6 +169,16 @@ const Login = ({navigation}) => {
             color={GoogleSigninButton.Color.Dark}
             onPress={loginWithGoogle}
           />
+          <View style={styles.registerForm}>
+            <Text>Need a new account?</Text>
+            <TouchableOpacity
+              style={styles.registerButton}
+              onPress={() => {
+                navigation.navigate('Register');
+              }}>
+              <Text style={styles.registerText}>Register</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </TouchableWithoutFeedback>
@@ -266,6 +295,18 @@ const styles = StyleSheet.create({
     width: 298,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+
+  registerForm: {
+    flexDirection: 'row',
+    marginTop: 5,
+  },
+
+  registerButton: {
+    marginLeft: 80,
+  },
+  registerText: {
+    color: 'blue',
   },
 });
 

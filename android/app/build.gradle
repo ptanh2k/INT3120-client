@@ -201,6 +201,9 @@ dependencies {
         exclude group:'com.facebook.flipper'
     }
 
+    implementation 'com.facebook.android:facebook-login:latest.release'
+
+
     implementation project(':react-native-splash-screen')
 
     implementation project(':react-native-gesture-handler')

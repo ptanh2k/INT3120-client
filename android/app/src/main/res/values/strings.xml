@@ -2,4 +2,7 @@
     <string name="app_name">BTL</string>
     <string name="content_description">Splash Screen</string>
     <string name="server_client_id">109603369029-3sgu6acfcr79dfc4432f1nikib384a9a.apps.googleusercontent.com</string>
+    <string name="facebook_app_id">1060801821423678</string>
+    <string name="fb_login_protocol_scheme">fb1060801821423678</string>
+
 </resources>
