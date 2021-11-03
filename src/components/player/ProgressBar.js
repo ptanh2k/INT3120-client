@@ -1,33 +1,67 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, Text, Dimensions, StyleSheet} from 'react-native';
+import Slider from '@react-native-community/slider';
 
-import {useProgress} from 'react-native-track-player';
+import TrackPlayer, {useProgress} from 'react-native-track-player';
 
-const ProgressBar = () => {
-  const progress = useProgress();
+const {width, height} = Dimensions.get('window');
+
+const ProgressBar = props => {
+  const {position, duration} = useProgress();
+
+  const formatDuration = secs => {
+    let minutes = Math.floor(secs / 60);
+    let seconds = Math.floor(secs - minutes * 60);
+
+    if (seconds < 10) {
+      seconds = `0${seconds}`;
+    }
+
+    return `${minutes}:${seconds}`;
+  };
+
+  const changeProgress = pos => {
+    console.log(pos);
+    TrackPlayer.seekTo(pos);
+  };
 
   return (
-    <View style={styles.progress}>
-      <View style={[{flex: progress.position}, styles.played]} />
-      <View
-        style={[{flex: progress.duration - progress.position}, styles.duration]}
-      />
+    <View style={styles.container}>
+      <View style={styles.progressBar}>
+        <Slider
+          style={{width: height / 2.35, height: height / 25}}
+          minimumValue={0}
+          maximumValue={duration}
+          value={position}
+          minimumTrackTintColor="white"
+          thumbTintColor="gray"
+          maximumTrackTintColor="cornflowerblue"
+          onSlidingComplete={changeProgress}
+        />
+      </View>
+      <View style={styles.duration}>
+        <Text style={styles.timeText}>{formatDuration(position)}</Text>
+        <Text style={styles.timeText}>{formatDuration(duration)}</Text>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  progress: {
-    flexDirection: 'row',
-    height: 1,
-    width: '90%',
-    marginTop: 10,
+  container: {
+    height: height / 10.71,
   },
-  played: {
-    backgroundColor: 'cornflowerblue',
+  progressBar: {
+    alignItems: 'center',
   },
   duration: {
-    backgroundColor: 'gray',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: height / 12.5,
+  },
+  timeText: {
+    color: 'white',
+    fontSize: height / 62.5,
   },
 });
 

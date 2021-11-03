@@ -10,11 +10,15 @@ import {
 
 import Icon from 'react-native-vector-icons/Entypo';
 
-const Song = ({song}) => {
+const Song = ({song, navigation}) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.song}>
-        <Image style={styles.coverImage} source={{uri: song.cover}} />
+      <TouchableOpacity
+        style={styles.song}
+        onPress={() => {
+          navigation.navigate('Play');
+        }}>
+        <Image style={styles.artworkImage} source={{uri: song.artwork}} />
         <View style={styles.divide}>
           <Text style={styles.songTitle}>{song.title}</Text>
           <Text style={styles.artist}>{song.artist}</Text>
@@ -39,7 +43,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     marginLeft: 5,
   },
-  coverImage: {
+  artworkImage: {
     height: 70,
     width: 70,
     resizeMode: 'contain',

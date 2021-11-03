@@ -15,7 +15,7 @@ import Search from './src/screen/Search';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeStack from './src/routes/HomeStack';
 import ProfileStack from './src/routes/ProfileStack';
-import PlayScreen from './src/screen/PlayScreen';
+import Player from './src/components/player/Player';
 
 const Stack = createStackNavigator();
 
@@ -36,7 +36,7 @@ const App = () => {
         <Stack.Screen name="Profile" component={ProfileStack} />
         <Stack.Screen name="HomeStack" component={HomeStack} />
         <Stack.Screen name="Search" component={Search} />
-        <Stack.Screen name="Play" component={PlayScreen} />
+        <Stack.Screen name="Play" component={Player} />
       </Stack.Navigator>
     </NavigationContainer>
   );
