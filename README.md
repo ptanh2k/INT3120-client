@@ -28,4 +28,4 @@
 
 ### Mock data
 
-- Song: https://mock-server-music.herokuapp.com/songs
+- Song: https://github.com/ptanh2k/mock-server
