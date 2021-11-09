@@ -1,11 +1,13 @@
 import React from 'react';
 import {View, Text, StyleSheet, Alert} from 'react-native';
 import {Avatar, Title, Caption, TouchableRipple} from 'react-native-paper';
-import Icon from 'react-native-vector-icons/AntDesign';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+
+import Container from '../components/Container';
 
 const Profile = () => {
   return (
-    <View style={styles.background}>
+    <Container>
       <View style={styles.userInfoSection}>
         <View style={styles.avatarAndName}>
           <Avatar.Image
@@ -26,17 +28,17 @@ const Profile = () => {
 
       <View style={styles.userInfoSection}>
         <View style={styles.row}>
-          <Icon name="enviromento" size={20} style={styles.locationIcon} />
+          <AntDesign name="enviromento" size={20} style={styles.locationIcon} />
           <Text style={styles.locationText}>Ha Noi, Viet Nam</Text>
         </View>
 
         <View style={styles.row}>
-          <Icon name="phone" size={20} style={styles.phoneIcon} />
+          <AntDesign name="phone" size={20} style={styles.phoneIcon} />
           <Text style={styles.phoneNumber}>113</Text>
         </View>
 
         <View style={styles.row}>
-          <Icon name="mail" size={20} style={styles.mailIcon} />
+          <AntDesign name="mail" size={20} style={styles.mailIcon} />
           <Text style={styles.mailText}>duc.anh.c@gmail.com</Text>
         </View>
       </View>
@@ -53,21 +55,25 @@ const Profile = () => {
       <View>
         <TouchableRipple onPress={() => {}}>
           <View style={styles.menuItem}>
-            <Icon name="linechart" size={20} style={styles.lineChartIcon} />
+            <AntDesign
+              name="linechart"
+              size={20}
+              style={styles.lineChartIcon}
+            />
             <Text style={styles.statText}>Stats</Text>
           </View>
         </TouchableRipple>
 
         <TouchableRipple onPress={() => {}}>
           <View style={styles.menuItem}>
-            <Icon name="download" size={20} style={styles.downloadIcon} />
+            <AntDesign name="download" size={20} style={styles.downloadIcon} />
             <Text style={styles.downloadText}>Downloads</Text>
           </View>
         </TouchableRipple>
 
         <TouchableRipple onPress={() => {}}>
           <View style={styles.menuItem}>
-            <Icon name="file1" size={20} style={styles.fileIcon} />
+            <AntDesign name="file1" size={20} style={styles.fileIcon} />
             <Text style={styles.fileText}>Files</Text>
           </View>
         </TouchableRipple>
@@ -77,28 +83,28 @@ const Profile = () => {
             Alert.alert('hoang dep trai');
           }}>
           <View style={styles.menuItem}>
-            <Icon name="heart" size={20} style={styles.heartIcon} />
+            <AntDesign name="heart" size={20} style={styles.heartIcon} />
             <Text style={styles.heartText}>Likes</Text>
           </View>
         </TouchableRipple>
 
         <TouchableRipple onPress={() => {}}>
           <View style={styles.menuItem}>
-            <Icon name="dashboard" size={20} style={styles.dashboardIcon} />
+            <AntDesign
+              name="dashboard"
+              size={20}
+              style={styles.dashboardIcon}
+            />
             <Text style={styles.listenHistory}>Listen History</Text>
           </View>
         </TouchableRipple>
       </View>
-    </View>
+    </Container>
   );
 };
 
 const styles = StyleSheet.create({
   title: {},
-  background: {
-    backgroundColor: '#3b3a3a',
-    flex: 1,
-  },
   userInfoSection: {},
   avatarAndName: {
     flexDirection: 'row',

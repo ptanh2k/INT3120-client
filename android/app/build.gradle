@@ -212,6 +212,8 @@ dependencies {
 
     implementation project(':react-native-safe-area-context')
 
+    implementation project(':react-native-linear-gradient')
+
     implementation 'com.google.android.gms:play-services-auth:19.2.0'
 
     if (enableHermes) {

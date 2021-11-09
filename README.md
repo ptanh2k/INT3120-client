@@ -20,6 +20,12 @@
 - 'react-native-track-player':
   https://react-native-track-player.js.org/getting-started/#playback-service
 
+- 'react-native-safe-area-context':
+  https://github.com/th3rdwave/react-native-safe-area-context
+
+- 'react-native-linear-gradient':
+  https://github.com/react-native-linear-gradient/react-native-linear-gradient
+
 ### Mock data
 
 - Song: https://mock-server-music.herokuapp.com/songs

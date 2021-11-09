@@ -10,10 +10,12 @@ import {
 } from 'react-native';
 import {TouchableRipple} from 'react-native-paper';
 
+import Container from '../components/Container';
+
 const Search = ({navigation}) => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View style={styles.container}>
+      <Container>
         <View style={styles.up}>
           <TouchableRipple
             onPress={() => {
@@ -29,27 +31,19 @@ const Search = ({navigation}) => {
             <Icon name="search1" size={30} style={styles.iconSearch} />
           </View>
         </View>
-      </View>
+      </Container>
     </TouchableWithoutFeedback>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#3d3e3f',
-    flexDirection: 'column',
-  },
-
   up: {
     flex: 1,
-    backgroundColor: 'black',
     flexDirection: 'row',
   },
   down: {
     flex: 9,
     flexDirection: 'row',
-    backgroundColor: 'black',
   },
   textInput: {
     flex: 1,
@@ -61,7 +55,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     color: 'white',
-    marginTop: 20,
+    marginTop: 10,
     marginLeft: 20,
   },
 
@@ -85,7 +79,7 @@ const styles = StyleSheet.create({
   titleBack: {
     fontSize: 30,
     color: 'white',
-    marginTop: 27,
+    marginTop: 17,
     marginLeft: 10,
   },
 });

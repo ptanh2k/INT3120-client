@@ -1,23 +1,17 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
 
+import Container from '../components/Container';
 import Songs from '../components/song/Songs';
 import SongsProvider from '../context/SongsContext';
 
 const Home = ({navigation}) => {
   return (
-    <View style={styles.container}>
+    <Container>
       <SongsProvider>
         <Songs navigation={navigation} />
       </SongsProvider>
-    </View>
+    </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default Home;

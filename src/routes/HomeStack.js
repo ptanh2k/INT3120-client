@@ -2,7 +2,7 @@ import React from 'react';
 import {Pressable, StyleSheet} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import Icon from 'react-native-vector-icons/AntDesign';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import Home from '../screen/Home';
 
@@ -17,6 +17,10 @@ const HomeStack = ({navigation}) => {
         options={{
           headerLeft: () => null,
           headerTitle: 'Home',
+          headerStyle: {
+            backgroundColor: '#0C0C25',
+          },
+          headerTintColor: '#fff',
           headerRight: () => {
             return (
               <Pressable
@@ -24,7 +28,7 @@ const HomeStack = ({navigation}) => {
                 onPress={() => {
                   navigation.navigate('Search');
                 }}>
-                <Icon name="search1" size={20} />
+                <AntDesign name="search1" size={20} color="#fff" />
               </Pressable>
             );
           },

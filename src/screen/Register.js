@@ -10,10 +10,12 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 
+import Container from '../components/Container';
+
 const Register = ({navigation}) => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View style={styles.container}>
+      <Container style={styles.container}>
         <View style={styles.up}>
           <Image
             style={styles.logo}
@@ -57,18 +59,15 @@ const Register = ({navigation}) => {
             <Text style={styles.loginButtonTitle}>LOGIN</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </Container>
     </TouchableWithoutFeedback>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'stretch',
-    backgroundColor: '#0C3D77',
   },
   up: {
     flex: 3,
