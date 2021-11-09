@@ -8,7 +8,9 @@ import {
   Pressable,
 } from 'react-native';
 
-import Icon from 'react-native-vector-icons/Entypo';
+import Entypo from 'react-native-vector-icons/Entypo';
+
+import TextStyles from '../../constants/styles/TextStyles';
 
 const Song = ({song, navigation}) => {
   return (
@@ -20,11 +22,13 @@ const Song = ({song, navigation}) => {
         }}>
         <Image style={styles.artworkImage} source={{uri: song.artwork}} />
         <View style={styles.divide}>
-          <Text style={styles.songTitle}>{song.title}</Text>
-          <Text style={styles.artist}>{song.artist}</Text>
+          <Text style={[TextStyles.songTitle, styles.songTitle]}>
+            {song.title}
+          </Text>
+          <Text style={[TextStyles.artist, styles.artist]}>{song.artist}</Text>
         </View>
         <Pressable style={styles.songInteraction}>
-          <Icon name="dots-three-vertical" size={15} />
+          <Entypo name="dots-three-vertical" size={15} />
         </Pressable>
       </TouchableOpacity>
     </View>
@@ -51,7 +55,6 @@ const styles = StyleSheet.create({
   },
   songTitle: {
     fontSize: 20,
-    fontWeight: 'bold',
   },
   artist: {
     fontSize: 10,
