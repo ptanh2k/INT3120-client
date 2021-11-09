@@ -5,6 +5,7 @@ import TrackPlayer, {Event, Capability} from 'react-native-track-player';
 
 import ProgressBar from './ProgressBar';
 import ControlButton from './ControlButton';
+import Container from '../Container';
 
 import songs from '../../asset/data/data';
 
@@ -146,7 +147,7 @@ const Player = ({onNext, onPrevious, onTogglePlayback}) => {
   };
 
   return (
-    <View style={styles.container}>
+    <Container style={styles.container}>
       <View style={styles.songList}>
         <Animated.FlatList
           ref={slider}
@@ -173,7 +174,7 @@ const Player = ({onNext, onPrevious, onTogglePlayback}) => {
       <ProgressBar />
 
       <ControlButton onNext={goNext} onPrev={goPrev} />
-    </View>
+    </Container>
   );
 };
 

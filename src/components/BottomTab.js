@@ -23,6 +23,11 @@ const BottomTabs = ({navigation}) => {
 
           return <Icon name={iconName} size={20} />;
         },
+        tabBarStyle: {
+          backgroundColor: '#674EB1',
+        },
+        tabBarInactiveTintColor: 'white',
+        tabBarActiveTintColor: 'gray',
         headerShown: false,
       })}>
       <Tab.Screen

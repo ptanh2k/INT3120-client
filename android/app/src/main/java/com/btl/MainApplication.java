@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
+import com.BV.LinearGradient.LinearGradientPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.guichaguri.trackplayer.TrackPlayer;
 import com.reactnativecommunity.slider.ReactSliderPackage;
@@ -18,7 +20,6 @@ import com.facebook.soloader.SoLoader;
 
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
-import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
@@ -37,15 +38,15 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
+            new SafeAreaContextPackage(),
+            new LinearGradientPackage(),
             new FBSDKPackage(),
             new TrackPlayer(),
             new ReactSliderPackage(),
             new RNGoogleSigninPackage(),
-            new SafeAreaContextPackage(),
             new RNScreensPackage(),
                     new SplashScreenReactPackage(),
-                    new RNGestureHandlerPackage(),
-                    new SafeAreaContextPackage()
+                    new RNGestureHandlerPackage()
             );
         }
 
