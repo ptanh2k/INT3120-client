@@ -1,16 +1,20 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, Pressable} from 'react-native';
 
-import Icon from 'react-native-vector-icons/AntDesign';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
-const HomeHeader = ({title}) => {
+const HomeHeader = ({title, navigation}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
       <View style={styles.openSearchBtn}>
-        <TouchableOpacity activeOpacity={0.8}>
-          <Icon name="search1" size={20} />
-        </TouchableOpacity>
+        <Pressable
+          style={styles.searchBtn}
+          onPress={() => {
+            navigation.navigate('Search');
+          }}>
+          <AntDesign name="search1" size={20} color="#fff" />
+        </Pressable>
       </View>
     </View>
   );

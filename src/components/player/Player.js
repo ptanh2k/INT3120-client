@@ -4,8 +4,10 @@ import {View, Text, Dimensions, Animated, StyleSheet} from 'react-native';
 import TrackPlayer, {Event, Capability} from 'react-native-track-player';
 
 import ProgressBar from './ProgressBar';
-import ControlButton from './ControlButton';
 import Container from '../Container';
+import Options from './control/Options';
+import TextStyles from '../../constants/styles/TextStyles';
+import ControlButton from './control/ControlButton';
 
 import songs from '../../asset/data/data';
 
@@ -165,15 +167,19 @@ const Player = ({onNext, onPrevious, onTogglePlayback}) => {
         />
       </View>
       <View>
-        <Text style={styles.title} numberOfLines={1}>
+        <Text style={[TextStyles.songTitle, styles.title]} numberOfLines={1}>
           {songs[songIndex].title}
         </Text>
-        <Text style={styles.artist}>{songs[songIndex].artist}</Text>
+        <Text style={[TextStyles.artist, styles.artist]}>
+          {songs[songIndex].artist}
+        </Text>
       </View>
 
       <ProgressBar />
 
       <ControlButton onNext={goNext} onPrev={goPrev} />
+
+      <Options />
     </Container>
   );
 };
@@ -199,14 +205,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     textAlign: 'center',
-    fontWeight: '600',
     textTransform: 'capitalize',
-    color: 'black',
   },
   artist: {
     fontSize: 18,
     textAlign: 'center',
-    color: 'black',
     textTransform: 'capitalize',
   },
 });
