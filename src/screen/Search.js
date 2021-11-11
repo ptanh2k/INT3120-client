@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {
   View,
@@ -11,8 +11,57 @@ import {
 import {TouchableRipple} from 'react-native-paper';
 
 import Container from '../components/Container';
+import {FlatList} from 'react-native-gesture-handler';
+import {getAll} from '../services/song';
 
 const Search = ({navigation}) => {
+  const [filterData, setfilterData] = useState([]);
+  const [masterData, setmasterData] = useState([]);
+  const [search, setsearch] = useState('');
+  useEffect(() => {
+    fetchPost();
+    return () => {};
+  }, []);
+  const fetchPost = () => {
+    getAll().then(responseJson => {
+      setfilterData(responseJson);
+      setmasterData(responseJson);
+    });
+  };
+
+  const ItemView = ({item}) => {
+    return (
+      <Text style={styles.itemStyle}>
+        {item.id}
+        {'. '}
+        {item.title.toUpperCase()}
+      </Text>
+    );
+  };
+
+  const searchFilter = text => {
+    if (text) {
+      const newData = masterData.filter(item => {
+        const itemData = item.title
+          ? item.title.toUpperCase()
+          : ''.toUpperCase();
+
+        const textData = text.toUpperCase();
+        return itemData.indexOf(textData) > -1;
+      });
+      setfilterData(newData);
+      setsearch(text);
+    } else {
+      setfilterData(masterData);
+      setsearch(text);
+    }
+  };
+
+  const ItemSeparatorView = () => {
+    return (
+      <View style={{height: 0.5, width: '100%', backgroundColor: '#c8c8c8'}} />
+    );
+  };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Container>
@@ -27,9 +76,23 @@ const Search = ({navigation}) => {
         </View>
         <View style={styles.down}>
           <View style={styles.box}>
-            <TextInput style={styles.textInput} />
+            <TextInput
+              style={styles.textInput}
+              value={search}
+              placeholder="search here"
+              underlineColorAndroid="transparent"
+              onChangeText={text => searchFilter(text)}
+            />
             <Icon name="search1" size={30} style={styles.iconSearch} />
           </View>
+        </View>
+        <View>
+          <FlatList
+            data={filterData}
+            keyExtractor={(item, index) => index.toString()}
+            ItemSeparatorComponent={ItemSeparatorView}
+            renderItem={ItemView}
+          />
         </View>
       </Container>
     </TouchableWithoutFeedback>
@@ -38,12 +101,12 @@ const Search = ({navigation}) => {
 
 const styles = StyleSheet.create({
   up: {
-    flex: 1,
     flexDirection: 'row',
   },
   down: {
-    flex: 9,
     flexDirection: 'row',
+    marginBottom: 10,
+    marginTop: 20,
   },
   textInput: {
     flex: 1,
@@ -81,6 +144,12 @@ const styles = StyleSheet.create({
     color: 'white',
     marginTop: 17,
     marginLeft: 10,
+  },
+
+  itemStyle: {
+    padding: 15,
+    marginLeft: 10,
+    color: 'white',
   },
 });
 
