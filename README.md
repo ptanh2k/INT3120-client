@@ -26,6 +26,10 @@
 - 'react-native-linear-gradient':
   https://github.com/react-native-linear-gradient/react-native-linear-gradient
 
+-"reanimated-bottom-sheet": "^1.0.0-alpha.22":
+  https://github.com/osdnk/react-native-reanimated-bottom-sheet
+  https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation
+
 ### Mock data
 
 - Song: https://github.com/ptanh2k/mock-server

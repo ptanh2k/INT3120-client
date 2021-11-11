@@ -18,7 +18,10 @@ import Search from './src/screen/Search';
 import HomeStack from './src/routes/HomeStack';
 import ProfileStack from './src/routes/ProfileStack';
 import Player from './src/components/player/Player';
+
 import Register from './src/screen/Register';
+import editProfile from './src/screen/editProfile';
+import editprofileStack from './src/routes/editProfileStack';
 
 const Stack = createStackNavigator();
 
@@ -43,6 +46,9 @@ const App = () => {
           <Stack.Screen name="Search" component={Search} />
           <Stack.Screen name="Play" component={Player} />
           <Stack.Screen name="Register" component={Register} />
+          <Stack.Screen name="editProfile" component={editProfile} />
+          <Stack.Screen name="editprofileStack" component={editprofileStack} />
+          <Stack.Screen name="ProfileStack" component={ProfileStack} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

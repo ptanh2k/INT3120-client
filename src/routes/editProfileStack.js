@@ -4,36 +4,26 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import Icon from 'react-native-vector-icons/AntDesign';
 import Icon2 from 'react-native-vector-icons/Entypo';
-import Profile from '../screen/Profile';
-
+import editProfile from '../screen/editProfile';
+import ProfileStack from './ProfileStack';
 const Stack = createStackNavigator();
 
-const ProfileStack = ({navigation}) => {
+const editprofileStack = ({navigation}) => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Profile"
-        component={Profile}
+        name="editProfile"
+        component={editProfile}
         options={{
           headerTitleAlign: 'center',
-          headerTitle: 'Profile',
-          headerRight: () => {
-            return (
-              <Pressable
-                style={styles.settingBtn}
-                onPress={() => {
-                  navigation.navigate('editprofileStack');
-                }}>
-                <Icon name="edit" size={20} />
-              </Pressable>
-            );
-          },
+          headerTitle: 'Edit Profile',
+
           headerLeft: () => {
             return (
               <Pressable
                 style={styles.searchBtn}
                 onPress={() => {
-                  navigation.navigate('Home');
+                  navigation.navigate('ProfileStack');
                 }}>
                 <Icon2 name="chevron-left" size={20} />
               </Pressable>
@@ -51,4 +41,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProfileStack;
+export default editprofileStack;
