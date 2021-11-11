@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.swmansion.reanimated.ReanimatedPackage;
+import com.reactnative.ivpusic.imagepicker.PickerPackage;
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
@@ -38,6 +40,8 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
+            new ReanimatedPackage(),
+            new PickerPackage(),
             new SafeAreaContextPackage(),
             new LinearGradientPackage(),
             new FBSDKPackage(),

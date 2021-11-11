@@ -26,6 +26,10 @@ target 'BTL' do
 
   pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
 
+  pod 'RNImageCropPicker', :path => '../node_modules/react-native-image-crop-picker'
+
+  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
+
   target 'BTLTests' do
     inherit! :complete
     # Pods for testing
