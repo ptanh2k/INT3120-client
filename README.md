@@ -29,6 +29,9 @@
 -"reanimated-bottom-sheet": "^1.0.0-alpha.22":
   https://github.com/osdnk/react-native-reanimated-bottom-sheet
   https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation
+- "react-native-image-crop-picker": "^0.37.1",
+  https://github.com/ivpusic/react-native-image-crop-picker
+
 
 ### Mock data
 
