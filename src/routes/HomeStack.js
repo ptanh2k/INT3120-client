@@ -5,33 +5,41 @@ import {createStackNavigator} from '@react-navigation/stack';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import Home from '../screen/Home';
+import HomeHeader from '../components/header/HomeHeader';
 
 const Stack = createStackNavigator();
 
-const HomeStack = ({navigation}) => {
+const HomeStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
         name="Home"
         component={Home}
         options={{
-          headerLeft: () => null,
-          headerTitle: 'Home',
-          headerStyle: {
-            backgroundColor: '#0C0C25',
-          },
-          headerTintColor: '#fff',
-          headerRight: () => {
-            return (
-              <Pressable
-                style={styles.searchBtn}
-                onPress={() => {
-                  navigation.navigate('Search');
-                }}>
-                <AntDesign name="search1" size={20} color="#fff" />
-              </Pressable>
-            );
-          },
+          // headerLeft: () => null,
+          // headerTitle: 'Home',
+          // headerStyle: {
+          //   backgroundColor: '#0C0C25',
+          // },
+          // headerTintColor: '#fff',
+          // headerRight: () => {
+          //   return (
+          //     <Pressable
+          //       style={styles.searchBtn}
+          //       onPress={() => {
+          //         navigation.navigate('Search');
+          //       }}>
+          //       <AntDesign name="search1" size={20} color="#fff" />
+          //     </Pressable>
+          //   );
+          // },
+          header: ({route, navigation, options}) => (
+            <HomeHeader
+              route={route}
+              navigation={navigation}
+              options={options}
+            />
+          ),
         }}
       />
     </Stack.Navigator>
