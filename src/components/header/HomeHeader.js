@@ -3,10 +3,12 @@ import {View, Text, StyleSheet, Pressable} from 'react-native';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-const HomeHeader = ({title, navigation}) => {
+const HomeHeader = ({route, navigation, options}) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
+      {/* {route.params.name && (
+        <Text style={styles.title}>{route.params.name}</Text>
+      )} */}
       <View style={styles.openSearchBtn}>
         <Pressable
           style={styles.searchBtn}

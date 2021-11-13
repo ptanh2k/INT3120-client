@@ -15,7 +15,7 @@ const {width, height} = Dimensions.get('window');
 
 const TRACK_PLAYER_CONTROL_OPTS = {
   stopWithApp: false, //Whether the player will be destroyed when the app closes
-  alwaysPauseOnInterruption: true, //Whether the remote-duck event will be triggered on every interruption
+  // alwaysPauseOnInterruption: true, //Whether the remote-duck event will be triggered on every interruption
   waitForBuffer: true,
   capabilities: [
     Capability.Play,

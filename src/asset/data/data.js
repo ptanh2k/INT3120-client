@@ -3,7 +3,7 @@ const songs = [
     title: 'death bed',
     artist: 'Powfu',
     artwork: require('../images/Adore_You_-_Harry_Styles.png'),
-    url: 'https://sample-music.netlify.app/death%20bed.mp3',
+    url: 'https://res.cloudinary.com/dfnnb6py0/video/upload/v1636612830/Music/DuongTaChoEmVe-buitruonglinh-6318765_z3cna6.mp3',
     duration: 2 * 60 + 53,
     id: 1,
   },

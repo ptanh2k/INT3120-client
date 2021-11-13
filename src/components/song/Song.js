@@ -25,7 +25,9 @@ const Song = ({song, navigation}) => {
           <Text style={[TextStyles.songTitle, styles.songTitle]}>
             {song.title}
           </Text>
-          <Text style={[TextStyles.artist, styles.artist]}>{song.artist}</Text>
+          <Text style={[TextStyles.artist, styles.artist]}>
+            {song.artists.map(artist => artist.name).join(', ')}
+          </Text>
         </View>
         <Pressable style={styles.songInteraction}>
           <Entypo name="dots-three-vertical" size={15} />
