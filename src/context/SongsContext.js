@@ -1,6 +1,6 @@
 import React, {useState, useEffect, createContext} from 'react';
 
-import {getAll} from '../services/song';
+import {getAllSongs} from '../services/song';
 
 export const SongsContext = createContext();
 
@@ -8,7 +8,7 @@ const SongsProvider = props => {
   const [songs, setSongs] = useState([]);
 
   useEffect(() => {
-    getAll().then(response => setSongs(response));
+    getAllSongs().then(response => setSongs(response));
   }, []);
 
   return (

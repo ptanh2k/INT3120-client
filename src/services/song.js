@@ -1,9 +1,9 @@
 import axios from 'axios';
-const baseUrl = 'https://mock-server-music.herokuapp.com/songs';
+const baseUrl = 'https://music-app-dd.herokuapp.com';
 
-const getAll = () => {
-  const request = axios.get(baseUrl);
+const getAllSongs = () => {
+  const request = axios.get(`${baseUrl}/music/song`);
   return request.then(response => response.data);
 };
 
-export {getAll};
+export {getAllSongs};
