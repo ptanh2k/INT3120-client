@@ -44,7 +44,7 @@ const App = () => {
           <Stack.Screen name="Profile" component={ProfileStack} />
           <Stack.Screen name="HomeStack" component={HomeStack} />
           <Stack.Screen name="Search" component={Search} />
-          <Stack.Screen name="Play" component={Player} />
+          <Stack.Screen name="Player" component={Player} />
           <Stack.Screen name="Register" component={Register} />
           <Stack.Screen name="editProfile" component={editProfile} />
           <Stack.Screen name="editprofileStack" component={editprofileStack} />

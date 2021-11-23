@@ -47,13 +47,13 @@ const ControlButton = ({onNext, onPrev}) => {
 
   return (
     <View style={styles.container}>
-      <TouchableRipple onPress={onPrev}>
+      <TouchableRipple style={styles.prevBtn} onPress={onPrev}>
         <Icon name="stepbackward" size={height / 25} color="black" />
       </TouchableRipple>
       <TouchableRipple onPress={togglePlayPause}>
         {playBtnIndicator()}
       </TouchableRipple>
-      <TouchableRipple onPress={onNext}>
+      <TouchableRipple style={styles.nextBtn} onPress={onNext}>
         <Icon name="stepforward" size={height / 25} color="black" />
       </TouchableRipple>
     </View>
@@ -63,8 +63,14 @@ const ControlButton = ({onNext, onPrev}) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: 100,
+    paddingHorizontal: 10,
+    margin: 6,
+  },
+  prevBtn: {
+    marginRight: 40,
+  },
+  nextBtn: {
+    marginLeft: 40,
   },
 });
 

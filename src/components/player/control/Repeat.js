@@ -21,7 +21,7 @@ const Repeat = () => {
       <TouchableRipple onPress={pressRepeat}>
         <Entypo
           name="cw"
-          size={height / 25}
+          size={height / 35}
           color={active ? 'black' : 'gray'}
         />
       </TouchableRipple>
