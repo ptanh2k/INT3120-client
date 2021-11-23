@@ -8,7 +8,18 @@ const SongsProvider = props => {
   const [songs, setSongs] = useState([]);
 
   useEffect(() => {
-    getAllSongs().then(response => setSongs(response));
+    getAllSongs().then(response => {
+      let artist = '';
+      let genre = '';
+
+      const list_songs = response.map(song => {
+        artist = song.artists.map(a => a.name).join(', ');
+        genre = song.genres.map(g => g.title).join(', ');
+        return {...song, artist, genre};
+      });
+
+      setSongs(list_songs);
+    });
   }, []);
 
   return (

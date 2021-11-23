@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   duration: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: height / 12.5,
+    paddingHorizontal: height / 40,
   },
   timeText: {
     color: 'white',

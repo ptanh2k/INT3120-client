@@ -6,8 +6,12 @@ import Shuffle from './Shuffle';
 const Options = () => {
   return (
     <View style={styles.container}>
-      <Repeat />
-      <Shuffle />
+      <View style={styles.repeatBtn}>
+        <Repeat />
+      </View>
+      <View style={styles.shuffleBtn}>
+        <Shuffle />
+      </View>
     </View>
   );
 };
@@ -15,6 +19,14 @@ const Options = () => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
+    alignItems: 'center',
+    paddingTop: 15,
+  },
+  repeatBtn: {
+    marginRight: 30,
+  },
+  shuffleBtn: {
+    marginLeft: 30,
   },
 });
 

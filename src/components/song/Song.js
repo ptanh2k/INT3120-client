@@ -2,32 +2,30 @@ import React from 'react';
 import {
   View,
   Text,
-  TouchableOpacity,
   StyleSheet,
   Image,
   Pressable,
+  TouchableOpacity,
 } from 'react-native';
 
 import Entypo from 'react-native-vector-icons/Entypo';
 
 import TextStyles from '../../constants/styles/TextStyles';
 
-const Song = ({song, navigation}) => {
+const Song = ({songs, song, navigation}) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.song}
         onPress={() => {
-          navigation.navigate('Play');
+          navigation.navigate('Player', {songs, song});
         }}>
         <Image style={styles.artworkImage} source={{uri: song.artwork}} />
         <View style={styles.divide}>
           <Text style={[TextStyles.songTitle, styles.songTitle]}>
             {song.title}
           </Text>
-          <Text style={[TextStyles.artist, styles.artist]}>
-            {song.artists.map(artist => artist.name).join(', ')}
-          </Text>
+          <Text style={[TextStyles.artist, styles.artist]}>{song.artist}</Text>
         </View>
         <Pressable style={styles.songInteraction}>
           <Entypo name="dots-three-vertical" size={15} />

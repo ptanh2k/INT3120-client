@@ -21,7 +21,7 @@ const Shuffle = () => {
       <TouchableRipple onPress={pressShuffle}>
         <Entypo
           name="shuffle"
-          size={height / 25}
+          size={height / 35}
           color={active ? 'black' : 'gray'}
         />
       </TouchableRipple>

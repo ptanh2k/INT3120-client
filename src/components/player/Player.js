@@ -9,8 +9,6 @@ import Options from './control/Options';
 import TextStyles from '../../constants/styles/TextStyles';
 import ControlButton from './control/ControlButton';
 
-import songs from '../../asset/data/data';
-
 const {width, height} = Dimensions.get('window');
 
 const TRACK_PLAYER_CONTROL_OPTS = {
@@ -32,7 +30,9 @@ const TRACK_PLAYER_CONTROL_OPTS = {
   ],
 };
 
-const Player = ({onNext, onPrevious, onTogglePlayback}) => {
+const Player = ({onNext, onPrevious, onTogglePlayback, route}) => {
+  const {songs} = route.params;
+
   const scrollX = useRef(new Animated.Value(0)).current;
 
   const slider = useRef(null); // to not re-initialize it
@@ -111,7 +111,7 @@ const Player = ({onNext, onPrevious, onTogglePlayback}) => {
         .catch(e => console.log('Error when change track', e));
     }
     index.current = songIndex;
-  }, [songIndex]);
+  }, [songIndex, songs]);
 
   const goPrev = async () => {
     slider.current.scrollToOffset({
@@ -143,7 +143,7 @@ const Player = ({onNext, onPrevious, onTogglePlayback}) => {
           },
           styles.itemView,
         ]}>
-        <Animated.Image source={item.artwork} style={styles.artwork} />
+        <Animated.Image source={{uri: item.artwork}} style={styles.artwork} />
       </Animated.View>
     );
   };
@@ -206,11 +206,13 @@ const styles = StyleSheet.create({
     fontSize: 28,
     textAlign: 'center',
     textTransform: 'capitalize',
+    paddingTop: height / 60,
   },
   artist: {
     fontSize: 18,
     textAlign: 'center',
     textTransform: 'capitalize',
+    paddingBottom: height / 60,
   },
 });
 
