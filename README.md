@@ -11,9 +11,6 @@
   Tên icon: https://oblador.github.io/react-native-vector-icons/ <br />
   Hiện dùng: Material, Ant Design, Font Awesome 5, Entypo <br />
 
-- json-server:
-  https://github.com/typicode/json-server
-
 - "react-native-paper":
   https://callstack.github.io/react-native-paper/getting-started.html <br/>
 
@@ -27,12 +24,11 @@
   https://github.com/react-native-linear-gradient/react-native-linear-gradient
 
 -"reanimated-bottom-sheet": "^1.0.0-alpha.22":
-  https://github.com/osdnk/react-native-reanimated-bottom-sheet
-  https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation
+https://github.com/osdnk/react-native-reanimated-bottom-sheet
+https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation
+
 - "react-native-image-crop-picker": "^0.37.1",
   https://github.com/ivpusic/react-native-image-crop-picker
 
-
-### Mock data
-
-- Song: https://github.com/ptanh2k/mock-server
+- "react-native-async-storage":
+  https://react-native-async-storage.github.io/async-storage/docs/install/

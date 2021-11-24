@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useContext} from 'react';
 import {
   View,
   Text,
@@ -12,15 +12,9 @@ import {
 } from 'react-native';
 import {LoginManager} from 'react-native-fbsdk';
 
-import {
-  GoogleSignin,
-  statusCodes,
-  GoogleSigninButton,
-} from '@react-native-google-signin/google-signin';
-
-import {ANDROID_CLIENT_ID, WEB_CLIENT_ID} from '@env';
-
 import Icon from 'react-native-vector-icons/AntDesign';
+
+import AuthContext from '../context/AuthContext';
 
 const Divider = props => {
   return (
@@ -33,63 +27,10 @@ const Divider = props => {
 };
 
 const Login = ({navigation}) => {
-  const [mail, setMail] = useState('');
-  const [pass, setPass] = useState('');
-  const [isSecureEntry, setIsSecureEntry] = useState(true);
-  const [logincheck, setLogin] = useState(false);
-  const [user, setUser] = useState({});
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-  useEffect(() => {
-    GoogleSignin.configure({
-      webClientId: WEB_CLIENT_ID,
-      androidClientId: ANDROID_CLIENT_ID,
-      forceCodeForRefreshToken: true,
-      offlineAccess: true,
-    });
-    isSignedIn();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const loginWithGoogle = async () => {
-    try {
-      await GoogleSignin.hasPlayService();
-      const userInfo = await GoogleSignin.signIn();
-      setUser(userInfo);
-    } catch (error) {
-      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        console.log('Sign in cancelled');
-      } else if (error.code === statusCodes.IN_PROGRESS) {
-        console.log('Signing in');
-      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        console.log('Play service not available');
-      } else {
-        console.log('Some other error');
-      }
-    }
-  };
-
-  const isSignedIn = async () => {
-    const isSigned = await GoogleSignin.isSignedIn();
-    // eslint-disable-next-line no-extra-boolean-cast
-    if (!!isSigned) {
-      getCurrentUserInfo();
-    } else {
-      console.log('Please login');
-    }
-  };
-
-  const getCurrentUserInfo = async () => {
-    try {
-      const userInfo = await GoogleSignin.signInSilently();
-      setUser(userInfo);
-    } catch (error) {
-      if (error.code === statusCodes.SIGN_IN_REQUIRED) {
-        console.log('User has not signed in yet');
-      } else {
-        console.log('Something went wrong. Unable to get info');
-      }
-    }
-  };
+  const {handleLogin} = useContext(AuthContext);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -105,11 +46,9 @@ const Login = ({navigation}) => {
           <View style={styles.textInputContainer}>
             <TextInput
               style={styles.textInput}
-              textContentType="emailAddress"
-              keyboardType="email-address"
-              placeholder="Enter your email"
-              onChangeText={text => setMail(text)}
-              defaultValue={mail}
+              placeholder="Enter yourt username"
+              onChangeText={text => setUsername(text)}
+              defaultValue={username}
             />
           </View>
 
@@ -117,21 +56,14 @@ const Login = ({navigation}) => {
             <TextInput
               style={styles.textInput}
               placeholder="Enter your password"
-              secureTextEntry={isSecureEntry}
-              onChangeText={text => setPass(text)}
-              defaultValue={pass}
+              secureTextEntry={true}
+              onChangeText={text => setPassword(text)}
+              defaultValue={password}
             />
           </View>
           <TouchableOpacity
             style={styles.loginButton}
-            onPress={() => {
-              if (account[0].user === mail && account[0].password === pass) {
-                navigation.navigate('BottomTabs');
-                setLogin(!logincheck);
-              } else {
-                Alert.alert('invalid!!!');
-              }
-            }}>
+            onPress={() => handleLogin({username, password})}>
             {/* chuyen den BottomTab */}
 
             <Text style={styles.loginButtonTitle}>LOGIN</Text>
@@ -147,12 +79,12 @@ const Login = ({navigation}) => {
                   'public_profile',
                 ]);
                 if (result.isCancelled) {
-                  Alert.alert('login was cancelled');
+                  Alert.alert('Login was cancelled');
                 } else {
                   navigation.navigate('BottomTabs');
                 }
               } catch (error) {
-                Alert.alert('loi:' + error);
+                Alert.alert('Error:' + error);
                 console.log(error);
               }
             }}>
@@ -163,12 +95,6 @@ const Login = ({navigation}) => {
             />
             <Text style={styles.facebookButtonTitle}>Login with facebook</Text>
           </TouchableOpacity>
-          <GoogleSigninButton
-            style={styles.googleSigninButton}
-            size={GoogleSigninButton.Size.Wide}
-            color={GoogleSigninButton.Color.Dark}
-            onPress={loginWithGoogle}
-          />
           <View style={styles.registerForm}>
             <Text>Need a new account?</Text>
             <TouchableOpacity
@@ -309,16 +235,5 @@ const styles = StyleSheet.create({
     color: 'blue',
   },
 });
-
-const account = [
-  {
-    user: 'admin',
-    password: 'admin',
-  },
-  {
-    user: 'hoang',
-    password: 'hoang',
-  },
-];
 
 export default Login;
