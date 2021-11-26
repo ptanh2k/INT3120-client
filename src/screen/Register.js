@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -6,13 +6,31 @@ import {
   Image,
   TextInput,
   Keyboard,
+  Alert,
   TouchableOpacity,
   TouchableWithoutFeedback,
 } from 'react-native';
 
+import registerService from '../services/registerService';
+
 import Container from '../components/Container';
 
 const Register = ({navigation}) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [password2, setPassword2] = useState('');
+
+  const handleRegister = async info => {
+    try {
+      const registeredUser = await registerService.register(info);
+      if (registeredUser) {
+        Alert.alert('User registered successfully!');
+      }
+    } catch (e) {
+      Alert.alert('This user is already exist');
+    }
+  };
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Container style={styles.container}>
@@ -21,34 +39,40 @@ const Register = ({navigation}) => {
             style={styles.logo}
             source={require('../asset/images/logo.png')}
           />
-          {/* <Text style ={styles.title}>Nghe nhac moi luc moi noi</Text> */}
         </View>
         <View style={styles.down}>
           <View style={styles.textInputContainer}>
             <TextInput
               style={styles.textInput}
               textContentType="username"
-              placeholder="Enter your full name"
+              placeholder="Enter username"
+              onChangeText={text => setUsername(text)}
+              defaultValue={username}
             />
           </View>
 
           <View style={styles.textInputContainer}>
             <TextInput
               style={styles.textInput}
-              textContentType="emailAddress"
-              keyboardType="email-address"
-              placeholder="Enter your email"
-            />
-          </View>
-
-          <View style={styles.textInputContainer}>
-            <TextInput
-              style={styles.textInput}
+              secureTextEntry={true}
               placeholder="Enter your password"
+              onChangeText={text => setPassword(text)}
+              defaultValue={password}
+            />
+          </View>
+          <View style={styles.textInputContainer}>
+            <TextInput
+              style={styles.textInput}
+              secureTextEntry={true}
+              placeholder="Re-enter your password"
+              onChangeText={text => setPassword2(text)}
+              defaultValue={password2}
             />
           </View>
 
-          <TouchableOpacity style={styles.registerButton}>
+          <TouchableOpacity
+            style={styles.registerButton}
+            onPress={() => handleRegister({username, password, password2})}>
             <Text style={styles.registerButtonTitle}>REGISTER</Text>
           </TouchableOpacity>
           <TouchableOpacity

@@ -93,6 +93,7 @@ const App = ({navigation}) => {
                     animationTypeForReplace: state.isLoggedOut ? 'pop' : 'push',
                   }}
                 />
+                <Stack.Screen name="Register" component={Register} />
               </>
             ) : (
               <>
@@ -101,7 +102,6 @@ const App = ({navigation}) => {
                 <Stack.Screen name="HomeStack" component={HomeStack} />
                 <Stack.Screen name="Search" component={Search} />
                 <Stack.Screen name="Player" component={Player} />
-                <Stack.Screen name="Register" component={Register} />
                 <Stack.Screen name="editProfile" component={editProfile} />
                 <Stack.Screen
                   name="editprofileStack"

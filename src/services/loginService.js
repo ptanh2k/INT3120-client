@@ -1,5 +1,6 @@
 import axios from 'axios';
-const baseUrl = 'https://music-app-dd.herokuapp.com/music';
+
+import {baseUrl} from '../constants/url/url';
 
 const login = async credentials => {
   const response = await axios.post(`${baseUrl}/login`, credentials);
