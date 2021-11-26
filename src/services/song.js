@@ -1,8 +1,9 @@
 import axios from 'axios';
-const baseUrl = 'https://music-app-dd.herokuapp.com';
+
+import {baseUrl} from '../constants/url/url';
 
 const getAllSongs = () => {
-  const request = axios.get(`${baseUrl}/music/song`);
+  const request = axios.get(`${baseUrl}/song/all`);
   return request.then(response => response.data);
 };
 
