@@ -4,7 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
-import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
+import com.emeraldsanto.encryptedstorage.RNEncryptedStoragePackage;
 import com.swmansion.reanimated.ReanimatedPackage;
 import com.reactnative.ivpusic.imagepicker.PickerPackage;
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
@@ -40,7 +40,7 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
-            new AsyncStoragePackage(),
+            new RNEncryptedStoragePackage(),
             new ReanimatedPackage(),
             new PickerPackage(),
             new SafeAreaContextPackage(),

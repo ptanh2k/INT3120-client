@@ -12,20 +12,20 @@ import {TouchableRipple} from 'react-native-paper';
 
 import Container from '../components/Container';
 import {FlatList} from 'react-native-gesture-handler';
-import {getAll} from '../services/song';
+import {getAllSongs} from '../services/song';
 
 const Search = ({navigation}) => {
-  const [filterData, setfilterData] = useState([]);
-  const [masterData, setmasterData] = useState([]);
-  const [search, setsearch] = useState('');
+  const [filterData, setFilterData] = useState([]);
+  const [masterData, setMasterData] = useState([]);
+  const [search, setSearch] = useState('');
   useEffect(() => {
     fetchPost();
     return () => {};
   }, []);
   const fetchPost = () => {
-    getAll().then(responseJson => {
-      setfilterData(responseJson);
-      setmasterData(responseJson);
+    getAllSongs().then(responseJson => {
+      setFilterData(responseJson);
+      setMasterData(responseJson);
     });
   };
 
@@ -49,19 +49,18 @@ const Search = ({navigation}) => {
         const textData = text.toUpperCase();
         return itemData.indexOf(textData) > -1;
       });
-      setfilterData(newData);
-      setsearch(text);
+      setFilterData(newData);
+      setSearch(text);
     } else {
-      setfilterData(masterData);
-      setsearch(text);
+      setFilterData(masterData);
+      setSearch(text);
     }
   };
 
   const ItemSeparatorView = () => {
-    return (
-      <View style={{height: 0.5, width: '100%', backgroundColor: '#c8c8c8'}} />
-    );
+    return <View style={styles.itemSeparatorView} />;
   };
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Container>
@@ -114,7 +113,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#6d6e6f',
     marginLeft: 45,
   },
-
+  itemSeparatorView: {
+    height: 0.5,
+    width: '100%',
+    backgroundColor: '#c8c8c8',
+  },
   title: {
     fontSize: 30,
     color: 'white',
