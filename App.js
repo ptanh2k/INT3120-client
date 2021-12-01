@@ -6,12 +6,12 @@
  * @flow strict-local
  */
 
-import React, {useState, useEffect, useReducer, useMemo} from 'react';
+import React, {useEffect, useReducer, useMemo} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import SplashScreen from 'react-native-splash-screen';
 import {createStackNavigator} from '@react-navigation/stack';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import EncryptedStorage from 'react-native-encrypted-storage';
 
 import Login from './src/screen/Login';
 import BottomTabs from './src/components/BottomTab';
@@ -44,7 +44,7 @@ const App = ({navigation}) => {
       let userToken;
 
       try {
-        userToken = await AsyncStorage.getItem('userToken');
+        userToken = await EncryptedStorage.getItem('userToken');
       } catch (e) {
         console.log('Restore token failed');
       }
@@ -55,7 +55,7 @@ const App = ({navigation}) => {
 
   const storeData = async value => {
     try {
-      await AsyncStorage.setItem('userToken', value.access_token);
+      await EncryptedStorage.setItem('userToken', value.access_token);
     } catch (e) {
       console.log('Storing token failed');
     }

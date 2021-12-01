@@ -9,37 +9,37 @@ import HomeHeader from '../components/header/HomeHeader';
 
 const Stack = createStackNavigator();
 
-const HomeStack = () => {
+const HomeStack = ({navigation}) => {
   return (
     <Stack.Navigator>
       <Stack.Screen
         name="Home"
         component={Home}
         options={{
-          // headerLeft: () => null,
-          // headerTitle: 'Home',
-          // headerStyle: {
-          //   backgroundColor: '#0C0C25',
-          // },
-          // headerTintColor: '#fff',
-          // headerRight: () => {
-          //   return (
-          //     <Pressable
-          //       style={styles.searchBtn}
-          //       onPress={() => {
-          //         navigation.navigate('Search');
-          //       }}>
-          //       <AntDesign name="search1" size={20} color="#fff" />
-          //     </Pressable>
-          //   );
-          // },
-          header: ({route, navigation, options}) => (
-            <HomeHeader
-              route={route}
-              navigation={navigation}
-              options={options}
-            />
-          ),
+          headerLeft: () => null,
+          headerTitle: 'Home',
+          headerStyle: {
+            backgroundColor: '#0C0C25',
+          },
+          headerTintColor: '#fff',
+          headerRight: () => {
+            return (
+              <Pressable
+                style={styles.searchBtn}
+                onPress={() => {
+                  navigation.navigate('Search');
+                }}>
+                <AntDesign name="search1" size={20} color="#fff" />
+              </Pressable>
+            );
+          },
+          // header: ({navigation, route, options}) => (
+          //   <HomeHeader
+          //     route={route}
+          //     navigation={navigation}
+          //     options={options}
+          //   />
+          // ),
         }}
       />
     </Stack.Navigator>
