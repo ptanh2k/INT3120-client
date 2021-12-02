@@ -72,6 +72,14 @@ const App = ({navigation}) => {
           Alert.alert('Wrong credentials');
         }
       },
+      handleLogout: async () => {
+        try {
+          await EncryptedStorage.removeItem('userToken');
+          dispatch({type: ACTIONS.LOGOUT});
+        } catch (e) {
+          console.log('Failed');
+        }
+      },
     }),
     [],
   );

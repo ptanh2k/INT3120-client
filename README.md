@@ -30,5 +30,5 @@ https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installatio
 - "react-native-image-crop-picker": "^0.37.1",
   https://github.com/ivpusic/react-native-image-crop-picker
 
-- "react-native-async-storage":
-  https://react-native-async-storage.github.io/async-storage/docs/install/
+- "react-native-encrypted-storage":
+  https://github.com/emeraldsanto/react-native-encrypted-storage

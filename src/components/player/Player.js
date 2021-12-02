@@ -177,16 +177,20 @@ const Player = ({onNext, onPrevious, onTogglePlayback, route}) => {
 
       <ProgressBar />
 
-      <ControlButton onNext={goNext} onPrev={goPrev} />
+      <View style={styles.controlBtn}>
+        <ControlButton onNext={goNext} onPrev={goPrev} />
+      </View>
 
-      <Options />
+      <View style={styles.options}>
+        <Options />
+      </View>
     </Container>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'space-evenly',
+    justifyContent: 'center',
     alignItems: 'center',
     height: height,
     maxHeight: 600,
@@ -213,6 +217,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     textTransform: 'capitalize',
     paddingBottom: height / 60,
+  },
+  controlBtn: {
+    alignItems: 'center',
+  },
+  options: {
+    alignItems: 'center',
   },
 });
 

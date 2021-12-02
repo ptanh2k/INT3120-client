@@ -1,13 +1,17 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, Text, StyleSheet, Alert} from 'react-native';
 import {Avatar, Title, Caption, TouchableRipple} from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import Container from '../components/Container';
 
+import AuthContext from '../context/AuthContext';
+
 const Profile = () => {
+  const {handleLogout} = useContext(AuthContext);
+
   return (
-    <Container>
+    <Container style={styles.container}>
       <View style={styles.userInfoSection}>
         <View style={styles.avatarAndName}>
           <Avatar.Image
@@ -21,27 +25,10 @@ const Profile = () => {
               }>
               Duc Anh C
             </Title>
-            <Caption style={styles.caption}>@duc.anh</Caption>
           </View>
         </View>
       </View>
 
-      <View style={styles.userInfoSection}>
-        <View style={styles.row}>
-          <AntDesign name="enviromento" size={20} style={styles.locationIcon} />
-          <Text style={styles.locationText}>Ha Noi, Viet Nam</Text>
-        </View>
-
-        <View style={styles.row}>
-          <AntDesign name="phone" size={20} style={styles.phoneIcon} />
-          <Text style={styles.phoneNumber}>113</Text>
-        </View>
-
-        <View style={styles.row}>
-          <AntDesign name="mail" size={20} style={styles.mailIcon} />
-          <Text style={styles.mailText}>duc.anh.c@gmail.com</Text>
-        </View>
-      </View>
       <View style={styles.infoBoxWrapper}>
         <View style={styles.infoBox}>
           <Title style={styles.follow}>1</Title>
@@ -59,6 +46,7 @@ const Profile = () => {
               name="linechart"
               size={20}
               style={styles.lineChartIcon}
+              color="#fff"
             />
             <Text style={styles.statText}>Stats</Text>
           </View>
@@ -66,15 +54,13 @@ const Profile = () => {
 
         <TouchableRipple onPress={() => {}}>
           <View style={styles.menuItem}>
-            <AntDesign name="download" size={20} style={styles.downloadIcon} />
+            <AntDesign
+              name="download"
+              size={20}
+              style={styles.downloadIcon}
+              color="#fff"
+            />
             <Text style={styles.downloadText}>Downloads</Text>
-          </View>
-        </TouchableRipple>
-
-        <TouchableRipple onPress={() => {}}>
-          <View style={styles.menuItem}>
-            <AntDesign name="file1" size={20} style={styles.fileIcon} />
-            <Text style={styles.fileText}>Files</Text>
           </View>
         </TouchableRipple>
 
@@ -83,7 +69,12 @@ const Profile = () => {
             Alert.alert('hoang dep trai');
           }}>
           <View style={styles.menuItem}>
-            <AntDesign name="heart" size={20} style={styles.heartIcon} />
+            <AntDesign
+              name="heart"
+              size={20}
+              style={styles.heartIcon}
+              color="#fff"
+            />
             <Text style={styles.heartText}>Likes</Text>
           </View>
         </TouchableRipple>
@@ -94,8 +85,21 @@ const Profile = () => {
               name="dashboard"
               size={20}
               style={styles.dashboardIcon}
+              color="#fff"
             />
             <Text style={styles.listenHistory}>Listen History</Text>
+          </View>
+        </TouchableRipple>
+
+        <TouchableRipple onPress={() => handleLogout()}>
+          <View style={styles.menuItem}>
+            <AntDesign
+              name="logout"
+              size={20}
+              style={styles.logoutIcon}
+              color="#fff"
+            />
+            <Text style={styles.logOutText}>Log Out</Text>
           </View>
         </TouchableRipple>
       </View>
@@ -105,6 +109,10 @@ const Profile = () => {
 
 const styles = StyleSheet.create({
   title: {},
+  container: {
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+  },
   userInfoSection: {},
   avatarAndName: {
     flexDirection: 'row',
@@ -149,27 +157,18 @@ const styles = StyleSheet.create({
   },
   dashboardIcon: {
     marginLeft: 10,
-    color: 'blue',
-  },
-  listenHistory: {
-    marginLeft: 30,
-    color: 'white',
   },
   heartIcon: {
     marginLeft: 10,
-    color: 'blue',
   },
   fileIcon: {
     marginLeft: 10,
-    color: 'blue',
   },
   lineChartIcon: {
     marginLeft: 10,
-    color: 'blue',
   },
   downloadIcon: {
     marginLeft: 10,
-    color: 'blue',
   },
   mailIcon: {
     marginLeft: 10,
@@ -181,6 +180,14 @@ const styles = StyleSheet.create({
   },
   locationIcon: {
     marginLeft: 10,
+    color: 'white',
+  },
+  logoutIcon: {
+    marginLeft: 10,
+    color: 'white',
+  },
+  listenHistory: {
+    marginLeft: 30,
     color: 'white',
   },
   mailText: {
@@ -200,6 +207,10 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   heartText: {
+    marginLeft: 30,
+    color: 'white',
+  },
+  logOutText: {
     marginLeft: 30,
     color: 'white',
   },
