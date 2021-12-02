@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import Icon from 'react-native-vector-icons/AntDesign';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import Entypo from 'react-native-vector-icons/Entypo';
 import {
   View,
   Text,
@@ -7,12 +8,15 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
   Keyboard,
+  Dimensions,
 } from 'react-native';
 import {TouchableRipple} from 'react-native-paper';
 
 import Container from '../components/Container';
 import {FlatList} from 'react-native-gesture-handler';
 import {getAllSongs} from '../services/song';
+
+const {width, height} = Dimensions.get('window');
 
 const Search = ({navigation}) => {
   const [filterData, setFilterData] = useState([]);
@@ -69,7 +73,7 @@ const Search = ({navigation}) => {
             onPress={() => {
               navigation.navigate('Home');
             }}>
-            <Icon name="arrowleft" size={35} style={styles.titleBack} />
+            <Entypo name="chevron-left" size={20} style={styles.backBtn} />
           </TouchableRipple>
           <Text style={styles.title}>Search</Text>
         </View>
@@ -78,11 +82,11 @@ const Search = ({navigation}) => {
             <TextInput
               style={styles.textInput}
               value={search}
-              placeholder="search here"
+              placeholder="Search here..."
               underlineColorAndroid="transparent"
               onChangeText={text => searchFilter(text)}
             />
-            <Icon name="search1" size={30} style={styles.iconSearch} />
+            <AntDesign name="search1" size={20} style={styles.iconSearch} />
           </View>
         </View>
         <View>
@@ -124,7 +128,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginLeft: 20,
   },
-
   iconSearch: {
     position: 'absolute',
     left: 4,
@@ -142,11 +145,10 @@ const styles = StyleSheet.create({
     marginRight: 15,
   },
 
-  titleBack: {
-    fontSize: 30,
+  backBtn: {
     color: 'white',
     marginTop: 17,
-    marginLeft: 10,
+    marginLeft: width / 30,
   },
 
   itemStyle: {
