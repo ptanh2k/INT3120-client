@@ -5,16 +5,16 @@ import {createStackNavigator} from '@react-navigation/stack';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import Home from '../screen/Home';
-import HomeHeader from '../components/header/HomeHeader';
 
 const Stack = createStackNavigator();
 
-const HomeStack = ({navigation}) => {
+const HomeStack = ({route, navigation}) => {
   return (
     <Stack.Navigator>
       <Stack.Screen
         name="Home"
         component={Home}
+        initialParams={{username: route.params.username}}
         options={{
           headerLeft: () => null,
           headerTitle: 'Home',
@@ -33,13 +33,6 @@ const HomeStack = ({navigation}) => {
               </Pressable>
             );
           },
-          // header: ({navigation, route, options}) => (
-          //   <HomeHeader
-          //     route={route}
-          //     navigation={navigation}
-          //     options={options}
-          //   />
-          // ),
         }}
       />
     </Stack.Navigator>

@@ -1,6 +1,6 @@
 import React, {useState, useEffect, createContext} from 'react';
 
-import {getAllSongs} from '../services/song';
+import songService from '../services/songService';
 
 export const SongsContext = createContext();
 
@@ -8,7 +8,7 @@ const SongsProvider = props => {
   const [songs, setSongs] = useState([]);
 
   useEffect(() => {
-    getAllSongs().then(response => {
+    songService.getAllSongs().then(response => {
       let artist = '';
       let genre = '';
 

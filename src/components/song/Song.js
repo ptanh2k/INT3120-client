@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -6,13 +6,39 @@ import {
   Image,
   Pressable,
   TouchableOpacity,
+  ToastAndroid,
 } from 'react-native';
+import {Menu, Divider} from 'react-native-paper';
 
 import Entypo from 'react-native-vector-icons/Entypo';
 
 import TextStyles from '../../constants/styles/TextStyles';
+import songService from '../../services/songService';
 
-const Song = ({songs, song, navigation}) => {
+const Song = ({songs, song, user, navigation}) => {
+  const [visible, isVisible] = useState(false);
+
+  const openMenu = () => isVisible(true);
+
+  const closeMenu = () => isVisible(false);
+
+  const obj = {
+    songId: song.id,
+    username: user,
+  };
+
+  const addToFavorite = () => {
+    songService.addToFavorite(obj).then(res => {
+      console.log(res);
+      closeMenu();
+      ToastAndroid.showWithGravity(
+        'Song added to favorites',
+        ToastAndroid.SHORT,
+        ToastAndroid.CENTER,
+      );
+    });
+  };
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -27,9 +53,23 @@ const Song = ({songs, song, navigation}) => {
           </Text>
           <Text style={[TextStyles.artist, styles.artist]}>{song.artist}</Text>
         </View>
-        <Pressable style={styles.songInteraction}>
-          <Entypo name="dots-three-vertical" size={15} />
-        </Pressable>
+        <View style={styles.songInteraction}>
+          <Menu
+            visible={visible}
+            onDismiss={closeMenu}
+            anchor={
+              <Pressable onPress={openMenu}>
+                <Entypo name="dots-three-vertical" size={15} color="#fff" />
+              </Pressable>
+            }>
+            <Menu.Item
+              onPress={() => addToFavorite()}
+              title="Add to favorites"
+            />
+            <Divider />
+            <Menu.Item onPress={() => {}} title="Add to playlist" />
+          </Menu>
+        </View>
       </TouchableOpacity>
     </View>
   );

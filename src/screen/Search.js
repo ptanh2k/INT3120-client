@@ -14,7 +14,7 @@ import {TouchableRipple} from 'react-native-paper';
 
 import Container from '../components/Container';
 import {FlatList} from 'react-native-gesture-handler';
-import {getAllSongs} from '../services/song';
+import {getAllSongs} from '../services/songService';
 
 const {width, height} = Dimensions.get('window');
 

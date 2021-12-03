@@ -27,6 +27,7 @@ import editprofileStack from './src/routes/editProfileStack';
 import AuthContext from './src/context/AuthContext';
 import {reducer, initialState, ACTIONS} from './src/utils/reducer';
 import loginService from './src/services/loginService';
+import songService from './src/services/songService';
 import {Alert} from 'react-native';
 
 const Stack = createStackNavigator();
@@ -45,6 +46,7 @@ const App = ({navigation}) => {
 
       try {
         credentials = await KeyChain.getGenericPassword();
+        songService.setToken(credentials.password);
       } catch (e) {
         console.log('Restore token failed');
       }
@@ -71,6 +73,7 @@ const App = ({navigation}) => {
         try {
           const user = await loginService.login(data);
           storeData(user);
+          songService.setToken(user.access_token);
           dispatch({
             type: ACTIONS.LOGIN,
             token: user.access_token,
@@ -83,6 +86,7 @@ const App = ({navigation}) => {
       handleLogout: async () => {
         try {
           await KeyChain.resetGenericPassword();
+          songService.setToken(null);
           dispatch({type: ACTIONS.LOGOUT});
         } catch (e) {
           console.log('Failed');
@@ -116,33 +120,45 @@ const App = ({navigation}) => {
                 <Stack.Screen
                   name="BottomTabs"
                   component={BottomTabs}
-                  initialParams={{username: state.userName}}
+                  initialParams={{
+                    username: state.userName,
+                  }}
                 />
                 <Stack.Screen
                   name="ProfileStack"
                   component={ProfileStack}
-                  initialParams={{username: state.userName}}
+                  initialParams={{
+                    username: state.userName,
+                  }}
                 />
                 <Stack.Screen
                   name="HomeStack"
                   component={HomeStack}
-                  initialParams={{username: state.userName}}
+                  initialParams={{
+                    username: state.userName,
+                  }}
                 />
                 <Stack.Screen name="Search" component={Search} />
                 <Stack.Screen
                   name="Player"
                   component={Player}
-                  initialParams={{username: state.userName}}
+                  initialParams={{
+                    username: state.userName,
+                  }}
                 />
                 <Stack.Screen
                   name="editProfile"
                   component={editProfile}
-                  initialParams={{username: state.userName}}
+                  initialParams={{
+                    username: state.userName,
+                  }}
                 />
                 <Stack.Screen
                   name="editprofileStack"
                   component={editprofileStack}
-                  initialParams={{username: state.userName}}
+                  initialParams={{
+                    username: state.userName,
+                  }}
                 />
               </>
             )}
