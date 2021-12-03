@@ -11,7 +11,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import SplashScreen from 'react-native-splash-screen';
 import {createStackNavigator} from '@react-navigation/stack';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import EncryptedStorage from 'react-native-encrypted-storage';
+import * as KeyChain from 'react-native-keychain';
 
 import Login from './src/screen/Login';
 import BottomTabs from './src/components/BottomTab';
@@ -41,21 +41,25 @@ const App = ({navigation}) => {
 
   useEffect(() => {
     const bootstrapAsync = async () => {
-      let userToken;
+      let credentials;
 
       try {
-        userToken = await EncryptedStorage.getItem('userToken');
+        credentials = await KeyChain.getGenericPassword();
       } catch (e) {
         console.log('Restore token failed');
       }
-      dispatch({type: ACTIONS.RESTORE_TOKEN, token: userToken});
+      dispatch({
+        type: ACTIONS.RESTORE_TOKEN,
+        token: credentials.token,
+        username: credentials.username,
+      });
     };
     bootstrapAsync();
   }, []);
 
   const storeData = async value => {
     try {
-      await EncryptedStorage.setItem('userToken', value.access_token);
+      await KeyChain.setGenericPassword(value.username, value.access_token);
     } catch (e) {
       console.log('Storing token failed');
     }
@@ -67,14 +71,18 @@ const App = ({navigation}) => {
         try {
           const user = await loginService.login(data);
           storeData(user);
-          dispatch({type: ACTIONS.LOGIN, token: user.access_token});
+          dispatch({
+            type: ACTIONS.LOGIN,
+            token: user.access_token,
+            username: user.username,
+          });
         } catch (e) {
           Alert.alert('Wrong credentials');
         }
       },
       handleLogout: async () => {
         try {
-          await EncryptedStorage.removeItem('userToken');
+          await KeyChain.resetGenericPassword();
           dispatch({type: ACTIONS.LOGOUT});
         } catch (e) {
           console.log('Failed');
@@ -105,17 +113,37 @@ const App = ({navigation}) => {
               </>
             ) : (
               <>
-                <Stack.Screen name="BottomTabs" component={BottomTabs} />
-                <Stack.Screen name="Profile" component={ProfileStack} />
-                <Stack.Screen name="HomeStack" component={HomeStack} />
+                <Stack.Screen
+                  name="BottomTabs"
+                  component={BottomTabs}
+                  initialParams={{username: state.userName}}
+                />
+                <Stack.Screen
+                  name="ProfileStack"
+                  component={ProfileStack}
+                  initialParams={{username: state.userName}}
+                />
+                <Stack.Screen
+                  name="HomeStack"
+                  component={HomeStack}
+                  initialParams={{username: state.userName}}
+                />
                 <Stack.Screen name="Search" component={Search} />
-                <Stack.Screen name="Player" component={Player} />
-                <Stack.Screen name="editProfile" component={editProfile} />
+                <Stack.Screen
+                  name="Player"
+                  component={Player}
+                  initialParams={{username: state.userName}}
+                />
+                <Stack.Screen
+                  name="editProfile"
+                  component={editProfile}
+                  initialParams={{username: state.userName}}
+                />
                 <Stack.Screen
                   name="editprofileStack"
                   component={editprofileStack}
+                  initialParams={{username: state.userName}}
                 />
-                <Stack.Screen name="ProfileStack" component={ProfileStack} />
               </>
             )}
           </Stack.Navigator>

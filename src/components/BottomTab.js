@@ -7,10 +7,12 @@ import ProfileStack from '../routes/ProfileStack';
 
 const Tab = createBottomTabNavigator();
 
-const BottomTabs = ({navigation}) => {
+const BottomTabs = ({route, navigation}) => {
+  console.log(route);
   return (
     <Tab.Navigator
       initialRouteName="Home"
+      // eslint-disable-next-line no-shadow
       screenOptions={({route}) => ({
         tabBarIcon: ({focused}) => {
           let iconName;
@@ -34,11 +36,13 @@ const BottomTabs = ({navigation}) => {
         name="HomeTab"
         component={HomeStack}
         options={{tabBarLabel: 'Home'}}
+        initialParams={{username: route.params.username}}
       />
       <Tab.Screen
         name="ProfileTab"
         component={ProfileStack}
         options={{tabBarLabel: 'Profile'}}
+        initialParams={{username: route.params.username}}
       />
     </Tab.Navigator>
   );
