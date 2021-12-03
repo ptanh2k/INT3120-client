@@ -34,6 +34,8 @@ target 'BTL' do
 
   pod 'react-native-encrypted-storage', :path => '../node_modules/react-native-encrypted-storage'
 
+  pod 'RNKeychain', :path => '../node_modules/react-native-keychain'
+
   target 'BTLTests' do
     inherit! :complete
     # Pods for testing

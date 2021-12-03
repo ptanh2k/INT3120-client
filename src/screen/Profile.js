@@ -7,8 +7,12 @@ import Container from '../components/Container';
 
 import AuthContext from '../context/AuthContext';
 
-const Profile = () => {
+const Profile = ({route}) => {
   const {handleLogout} = useContext(AuthContext);
+
+  console.log(route);
+
+  const {username} = route.params;
 
   return (
     <Container style={styles.container}>
@@ -23,7 +27,7 @@ const Profile = () => {
               style={
                 (styles.title, {marginTop: 15, marginBottom: 5, color: 'white'})
               }>
-              Duc Anh C
+              {username}
             </Title>
           </View>
         </View>

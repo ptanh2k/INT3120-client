@@ -11,18 +11,21 @@ export const reducer = (prevState, action) => {
       return {
         ...prevState,
         userToken: action.token,
+        userName: action.username,
       };
     case ACTIONS.LOGIN:
       return {
         ...prevState,
         isLoggedOut: false,
         userToken: action.token,
+        userName: action.username,
       };
     case ACTIONS.LOGOUT:
       return {
         ...prevState,
         isLoggedOut: true,
         userToken: null,
+        userName: null,
       };
   }
 };
@@ -31,4 +34,5 @@ export const initialState = {
   isLoggedIn: false,
   isLoggedOut: false,
   userToken: null,
+  userName: null,
 };

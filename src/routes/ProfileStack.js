@@ -6,16 +6,18 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import Icon2 from 'react-native-vector-icons/Entypo';
 import Profile from '../screen/Profile';
 
-const {width, height} = Dimensions.get('window');
+const screenWidth = Dimensions.get('window').width;
 
 const Stack = createStackNavigator();
 
-const ProfileStack = ({navigation}) => {
+const ProfileStack = ({route, navigation}) => {
+  console.log(route);
   return (
     <Stack.Navigator>
       <Stack.Screen
         name="Profile"
         component={Profile}
+        initialParams={{username: route.params.username}}
         options={{
           headerTitleAlign: 'center',
           headerTitle: 'Profile',
@@ -53,10 +55,10 @@ const ProfileStack = ({navigation}) => {
 
 const styles = StyleSheet.create({
   settingBtn: {
-    marginRight: width / 30,
+    marginRight: screenWidth / 30,
   },
   backBtn: {
-    marginLeft: width / 30,
+    marginLeft: screenWidth / 30,
   },
 });
 
