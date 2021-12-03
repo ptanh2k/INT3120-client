@@ -10,8 +10,6 @@ import AuthContext from '../context/AuthContext';
 const Profile = ({route}) => {
   const {handleLogout} = useContext(AuthContext);
 
-  console.log(route);
-
   const {username} = route.params;
 
   return (

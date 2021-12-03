@@ -4,7 +4,7 @@ import {Animated} from 'react-native';
 import Song from './Song';
 import {SongsContext} from '../../context/SongsContext';
 
-const Songs = ({navigation}) => {
+const Songs = ({navigation, user}) => {
   const [songs] = useContext(SongsContext);
 
   return (
@@ -13,7 +13,7 @@ const Songs = ({navigation}) => {
         data={songs}
         keyExtractor={item => item.id}
         renderItem={({item}) => (
-          <Song songs={songs} song={item} navigation={navigation} />
+          <Song songs={songs} song={item} navigation={navigation} user={user} />
         )}
       />
     </>
