@@ -1,13 +1,12 @@
 import React from 'react';
-import {Pressable, StyleSheet} from 'react-native';
+import {Pressable, Dimensions, StyleSheet} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import Icon from 'react-native-vector-icons/AntDesign';
-import Icon2 from 'react-native-vector-icons/Entypo';
-import editProfile from '../screen/editProfile';
-import ProfileStack from './ProfileStack';
+import Entypo from 'react-native-vector-icons/Entypo';
 import PlayList from '../screen/PlayList';
 const Stack = createStackNavigator();
+
+const screenWidth = Dimensions.get('window').width;
 
 const PlayListStack = ({route, navigation}) => {
   return (
@@ -18,14 +17,18 @@ const PlayListStack = ({route, navigation}) => {
         initialParams={{username: route.params.username}}
         options={{
           headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: '#0C0C25',
+          },
+          headerTintColor: '#fff',
           headerLeft: () => {
             return (
               <Pressable
-                style={styles.searchBtn}
+                style={styles.backBtn}
                 onPress={() => {
                   navigation.navigate('BottomTabs');
                 }}>
-                <Icon2 name="chevron-left" size={20} />
+                <Entypo name="chevron-left" size={20} color="#fff" />
               </Pressable>
             );
           },
@@ -36,8 +39,8 @@ const PlayListStack = ({route, navigation}) => {
 };
 
 const styles = StyleSheet.create({
-  settingBtn: {
-    marginRight: 15,
+  backBtn: {
+    marginLeft: screenWidth / 30,
   },
 });
 

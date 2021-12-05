@@ -1,5 +1,5 @@
 import React from 'react';
-import {Pressable, StyleSheet} from 'react-native';
+import {Pressable, Dimensions, StyleSheet} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -7,6 +7,8 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Home from '../screen/Home';
 
 const Stack = createStackNavigator();
+
+const screenWidth = Dimensions.get('window').width;
 
 const HomeStack = ({route, navigation}) => {
   return (
@@ -41,7 +43,7 @@ const HomeStack = ({route, navigation}) => {
 
 const styles = StyleSheet.create({
   searchBtn: {
-    marginRight: 15,
+    marginRight: screenWidth / 30,
   },
 });
 
