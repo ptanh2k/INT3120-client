@@ -29,7 +29,6 @@ import {reducer, initialState, ACTIONS} from './src/utils/reducer';
 import loginService from './src/services/loginService';
 import songService from './src/services/songService';
 import {Alert} from 'react-native';
-import PlayList from './src/screen/PlayList';
 import PlayListStack from './src/routes/PlayListStack';
 
 import {LogBox} from 'react-native';
