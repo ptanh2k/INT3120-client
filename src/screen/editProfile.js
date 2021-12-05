@@ -59,6 +59,7 @@ const editProfile = ({navigation}) => {
       </TouchableOpacity>
     </View>
   );
+
   const renderHeader = () => (
     <View style={styles.header}>
       <View style={styles.panelHeader}>

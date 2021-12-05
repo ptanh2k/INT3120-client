@@ -14,7 +14,7 @@ import {TouchableRipple} from 'react-native-paper';
 
 import Container from '../components/Container';
 import {FlatList} from 'react-native-gesture-handler';
-import {getAllSongs} from '../services/songService';
+import songService from '../services/songService';
 
 const {width, height} = Dimensions.get('window');
 
@@ -27,7 +27,7 @@ const Search = ({navigation}) => {
     return () => {};
   }, []);
   const fetchPost = () => {
-    getAllSongs().then(responseJson => {
+    songService.getAllSongs().then(responseJson => {
       setFilterData(responseJson);
       setMasterData(responseJson);
     });

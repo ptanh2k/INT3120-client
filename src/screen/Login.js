@@ -95,6 +95,20 @@ const Login = ({navigation}) => {
             />
             <Text style={styles.facebookButtonTitle}>Login with facebook</Text>
           </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.facebookButton}
+            onPress={async () => {
+              // _signIn();
+            }}>
+            <Icon
+              name="facebook-square"
+              size={40}
+              style={styles.logoFacebook}
+            />
+            <Text style={styles.facebookButtonTitle}>Login with google</Text>
+          </TouchableOpacity>
+
           <View style={styles.registerForm}>
             <Text>Need a new account?</Text>
             <TouchableOpacity
