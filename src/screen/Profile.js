@@ -5,9 +5,11 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import Container from '../components/Container';
 
+import FavoriteStack from '../routes/FavoriteStack';
+
 import AuthContext from '../context/AuthContext';
 
-const Profile = ({route}) => {
+const Profile = ({navigation, route}) => {
   const {handleLogout} = useContext(AuthContext);
 
   const {username} = route.params;
@@ -68,7 +70,7 @@ const Profile = ({route}) => {
 
         <TouchableRipple
           onPress={() => {
-            Alert.alert('hoang dep trai');
+            navigation.navigate('FavoriteStack', {username: username});
           }}>
           <View style={styles.menuItem}>
             <AntDesign

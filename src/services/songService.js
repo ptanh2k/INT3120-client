@@ -22,4 +22,13 @@ const addToFavorite = async obj => {
   return response.data;
 };
 
-export default {getAllSongs, addToFavorite, setToken};
+const getFavorite = username => {
+  const config = {
+    headers: {Authorization: token},
+  };
+
+  const request = axios.get(`${baseUrl}/favorite-list/${username}`, config);
+  return request.then(response => response.data);
+};
+
+export default {getAllSongs, addToFavorite, getFavorite, setToken};
