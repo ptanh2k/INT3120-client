@@ -19,10 +19,10 @@ import Search from './src/screen/Search';
 import HomeStack from './src/routes/HomeStack';
 import ProfileStack from './src/routes/ProfileStack';
 import Player from './src/components/player/Player';
-
 import Register from './src/screen/Register';
 import editProfile from './src/screen/editProfile';
 import editprofileStack from './src/routes/editProfileStack';
+import FavoriteStack from './src/routes/FavoriteStack';
 
 import AuthContext from './src/context/AuthContext';
 import {reducer, initialState, ACTIONS} from './src/utils/reducer';
@@ -168,6 +168,13 @@ const App = ({navigation}) => {
                 <Stack.Screen
                   name="editprofileStack"
                   component={editprofileStack}
+                  initialParams={{
+                    username: state.userName,
+                  }}
+                />
+                <Stack.Screen
+                  name="FavoriteStack"
+                  component={FavoriteStack}
                   initialParams={{
                     username: state.userName,
                   }}
