@@ -8,7 +8,6 @@ import songService from '../services/songService';
 
 const Favorite = ({route, navigation}) => {
   const [favoriteSongs, setFavoriteSongs] = useState([]);
-  console.log(route.params.username);
 
   useEffect(() => {
     songService.getFavorite(route.params.username).then(response => {

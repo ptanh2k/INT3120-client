@@ -14,7 +14,10 @@ const PlayListStack = ({route, navigation}) => {
       <Stack.Screen
         name="PlayList"
         component={PlayList}
-        initialParams={{username: route.params.username}}
+        initialParams={{
+          username: route.params.username,
+          genre: route.params.genre,
+        }}
         options={{
           headerTitleAlign: 'center',
           headerStyle: {

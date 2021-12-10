@@ -7,4 +7,9 @@ const getAllGenres = () => {
   return request.then(response => response.data);
 };
 
-export {getAllGenres};
+const getAllSongsOfGenre = genre => {
+  const request = axios.get(`${baseUrl}/genre-song/${genre}`);
+  return request.then(response => response.data);
+};
+
+export default {getAllGenres, getAllSongsOfGenre};
