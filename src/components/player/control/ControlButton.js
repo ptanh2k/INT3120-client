@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import TrackPlayer from 'react-native-track-player';
 import {usePlaybackState} from 'react-native-track-player/lib/hooks';
 
-const {width, height} = Dimensions.get('window');
+const screenHeight = Dimensions.get('window').height;
 
 const ControlButton = ({onNext, onPrev}) => {
   const playbackState = usePlaybackState();
@@ -29,11 +29,13 @@ const ControlButton = ({onNext, onPrev}) => {
   const playBtnIndicator = () => {
     switch (isPlaying) {
       case 'playing':
-        return <Icon name="pause" size={height / 25} color="black" />;
+        return <Icon name="pause" size={screenHeight / 25} color="black" />;
       case 'paused':
-        return <Icon name="caretright" size={height / 25} color="black" />;
+        return (
+          <Icon name="caretright" size={screenHeight / 25} color="black" />
+        );
       default:
-        return <ActivityIndicator size={height / 25} color="gray" />;
+        return <ActivityIndicator size={screenHeight / 25} color="gray" />;
     }
   };
 
@@ -48,13 +50,13 @@ const ControlButton = ({onNext, onPrev}) => {
   return (
     <View style={styles.container}>
       <TouchableRipple style={styles.prevBtn} onPress={onPrev}>
-        <Icon name="stepbackward" size={height / 25} color="black" />
+        <Icon name="stepbackward" size={screenHeight / 25} color="black" />
       </TouchableRipple>
       <TouchableRipple onPress={togglePlayPause}>
         {playBtnIndicator()}
       </TouchableRipple>
       <TouchableRipple style={styles.nextBtn} onPress={onNext}>
-        <Icon name="stepforward" size={height / 25} color="black" />
+        <Icon name="stepforward" size={screenHeight / 25} color="black" />
       </TouchableRipple>
     </View>
   );

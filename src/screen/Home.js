@@ -5,25 +5,21 @@ import {Card} from 'react-native-elements';
 import {FlatList, Text, Image, View, StyleSheet} from 'react-native';
 
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {getAllGenres} from '../services/genreService';
+import genreService from '../services/genreService';
 import TopSong from '../components/song/TopSong';
 
 const Home = ({route, navigation}) => {
   const [data, setData] = useState([]);
   useEffect(() => {
-    getAllGenres().then(response => {
+    genreService.getAllGenres().then(response => {
       setData(response);
     });
-    // console.log(data);
   }, []);
 
   return (
     <Container>
-      {/* <SongsProvider>
-        <Songs navigation={navigation} />
-      </SongsProvider> */}
       <View>
-        <Text style={styles.content}>AlBum</Text>
+        <Text style={styles.content}>AlBUM</Text>
         <FlatList
           horizontal
           data={data}
@@ -35,7 +31,9 @@ const Home = ({route, navigation}) => {
                     <TouchableOpacity
                       style={styles.cardStyle}
                       onPress={() => {
-                        navigation.navigate('PlayListStack');
+                        navigation.navigate('PlayListStack', {
+                          genre: rowData.title,
+                        });
                       }}>
                       <Image
                         source={{uri: rowData.artwork}}
@@ -54,7 +52,7 @@ const Home = ({route, navigation}) => {
         />
       </View>
 
-      <Text style={styles.content}>TOP VIEWED</Text>
+      <Text style={styles.content}>TOP SONGS FOR STREAMING</Text>
 
       <View>
         <TopSong navigation={navigation} user={route.params.username} />
@@ -70,8 +68,9 @@ const styles = StyleSheet.create({
   },
 
   content: {
-    fontSize: 40,
+    fontSize: 25,
     color: 'white',
+    fontWeight: 'bold',
     marginLeft: 10,
     marginBottom: 10,
     marginTop: 10,
