@@ -10,7 +10,6 @@ import {
   TouchableWithoutFeedback,
   Alert,
 } from 'react-native';
-import {LoginManager} from 'react-native-fbsdk';
 
 import Icon from 'react-native-vector-icons/AntDesign';
 
@@ -30,7 +29,7 @@ const Login = ({navigation}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const {handleLogin} = useContext(AuthContext);
+  const {handleLogin, handleFBLogin} = useContext(AuthContext);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -73,21 +72,7 @@ const Login = ({navigation}) => {
 
           <TouchableOpacity
             style={styles.facebookButton}
-            onPress={async () => {
-              try {
-                let result = await LoginManager.logInWithPermissions([
-                  'public_profile',
-                ]);
-                if (result.isCancelled) {
-                  Alert.alert('Login was cancelled');
-                } else {
-                  navigation.navigate('BottomTabs');
-                }
-              } catch (error) {
-                Alert.alert('Error:' + error);
-                console.log(error);
-              }
-            }}>
+            onPress={() => handleFBLogin()}>
             <Icon
               name="facebook-square"
               size={40}
