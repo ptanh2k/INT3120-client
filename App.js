@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React, {useEffect, useReducer, useMemo} from 'react';
+import React, {useEffect, useReducer, useMemo, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import SplashScreen from 'react-native-splash-screen';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -32,6 +32,7 @@ import {Alert} from 'react-native';
 import PlayListStack from './src/routes/PlayListStack';
 
 import {LogBox} from 'react-native';
+import {LoginManager, AccessToken, Profile} from 'react-native-fbsdk';
 
 LogBox.ignoreLogs(['EventEmitter.removeListener']);
 
@@ -42,7 +43,6 @@ const App = ({navigation}) => {
   useEffect(() => {
     SplashScreen.hide();
   });
-
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
@@ -95,6 +95,36 @@ const App = ({navigation}) => {
           dispatch({type: ACTIONS.LOGOUT});
         } catch (e) {
           console.log('Failed');
+        }
+      },
+      handleFBLogin: async () => {
+        try {
+          let result = await LoginManager.logInWithPermissions([
+            'public_profile',
+          ]);
+          if (result.isCancelled) {
+            Alert.alert('Login was cancelled');
+          } else {
+            const accessToken = await AccessToken.getCurrentAccessToken();
+
+            const profile = await loginService.loginFb(
+              accessToken.accessToken.toString(),
+            );
+
+            await KeyChain.setGenericPassword(
+              profile.name,
+              accessToken.accessToken.toString(),
+            );
+            songService.setToken(accessToken.accessToken.toString());
+            dispatch({
+              type: ACTIONS.LOGIN,
+              token: accessToken.accessToken.toString(),
+              username: profile.name,
+            });
+          }
+        } catch (error) {
+          Alert.alert('Error:' + error);
+          console.log(error);
         }
       },
     }),
