@@ -8,11 +8,14 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import TrackPlayer, {Event, Capability} from 'react-native-track-player';
+import TrackPlayer, {
+  Event,
+  Capability,
+  RepeatMode,
+} from 'react-native-track-player';
 
 import ProgressBar from './ProgressBar';
 import Container from '../Container';
-import Options from './control/Options';
 import TextStyles from '../../constants/styles/TextStyles';
 import ControlButton from './control/ControlButton';
 
@@ -37,7 +40,7 @@ const TRACK_PLAYER_CONTROL_OPTS = {
   ],
 };
 
-const Player = ({onNext, onPrevious, onTogglePlayback, route}) => {
+const Player = ({onNext, onPrevious, onTogglePlayback, navigation, route}) => {
   const {songs, song} = route.params;
 
   const scrollX = useRef(new Animated.Value(0)).current;
@@ -46,8 +49,8 @@ const Player = ({onNext, onPrevious, onTogglePlayback, route}) => {
   const index = useRef(0);
 
   const [songIndex, setSongIndex] = useState(0);
-
   const [isPlayerReady, setIsPlayerReady] = useState(false);
+  const [isTrackRepeatActive, setIsTrackRepeatActive] = useState(false);
 
   const getSongIndex = (ss, s) => {
     return ss.indexOf(s);
@@ -133,6 +136,19 @@ const Player = ({onNext, onPrevious, onTogglePlayback, route}) => {
     TrackPlayer.skipToNext();
   };
 
+  const onRepeat = async () => {
+    setIsTrackRepeatActive(!isTrackRepeatActive);
+    if (isTrackRepeatActive) {
+      TrackPlayer.setRepeatMode(RepeatMode.Track);
+    } else {
+      TrackPlayer.setRepeatMode(RepeatMode.Off);
+    }
+  };
+
+  const onShuffle = async () => {
+    // TODO: Implement shuffle function
+  };
+
   // eslint-disable-next-line no-shadow
   const renderItem = ({index, item}) => {
     return (
@@ -178,11 +194,13 @@ const Player = ({onNext, onPrevious, onTogglePlayback, route}) => {
       <ProgressBar />
 
       <View style={styles.controlBtn}>
-        <ControlButton onNext={goNext} onPrev={goPrev} />
-      </View>
-
-      <View style={styles.options}>
-        <Options />
+        <ControlButton
+          onNext={goNext}
+          onPrev={goPrev}
+          onRepeat={onRepeat}
+          onShuffle={onShuffle}
+          isTrackRepeatActive={isTrackRepeatActive}
+        />
       </View>
     </Container>
   );
@@ -200,11 +218,11 @@ const styles = StyleSheet.create({
   },
   artwork: {
     width: width,
-    height: 320,
+    height: height / 2,
     borderRadius: 5,
   },
   songList: {
-    height: 320,
+    height: height / 2,
   },
   title: {
     fontSize: 28,
@@ -219,9 +237,6 @@ const styles = StyleSheet.create({
     paddingBottom: height / 60,
   },
   controlBtn: {
-    alignItems: 'center',
-  },
-  options: {
     alignItems: 'center',
   },
 });
