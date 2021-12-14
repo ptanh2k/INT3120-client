@@ -4,7 +4,7 @@ import Slider from '@react-native-community/slider';
 
 import TrackPlayer, {useProgress} from 'react-native-track-player';
 
-const {width, height} = Dimensions.get('window');
+const screenHeight = Dimensions.get('window').height;
 
 const ProgressBar = props => {
   const {position, duration} = useProgress();
@@ -21,7 +21,6 @@ const ProgressBar = props => {
   };
 
   const changeProgress = pos => {
-    console.log(pos);
     TrackPlayer.seekTo(pos);
   };
 
@@ -29,7 +28,7 @@ const ProgressBar = props => {
     <View style={styles.container}>
       <View style={styles.progressBar}>
         <Slider
-          style={{width: height / 2.35, height: height / 25}}
+          style={{width: screenHeight / 2.35, height: screenHeight / 25}}
           minimumValue={0}
           maximumValue={duration}
           value={position}
@@ -49,7 +48,7 @@ const ProgressBar = props => {
 
 const styles = StyleSheet.create({
   container: {
-    height: height / 10.71,
+    height: screenHeight / 10.71,
   },
   progressBar: {
     alignItems: 'center',
@@ -57,11 +56,11 @@ const styles = StyleSheet.create({
   duration: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: height / 40,
+    paddingHorizontal: screenHeight / 40,
   },
   timeText: {
     color: 'white',
-    fontSize: height / 62.5,
+    fontSize: screenHeight / 62.5,
   },
 });
 

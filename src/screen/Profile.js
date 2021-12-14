@@ -5,8 +5,6 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import Container from '../components/Container';
 
-import FavoriteStack from '../routes/FavoriteStack';
-
 import AuthContext from '../context/AuthContext';
 
 const Profile = ({navigation, route}) => {

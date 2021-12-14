@@ -41,7 +41,7 @@ const ProfileStack = ({route, navigation}) => {
               <Pressable
                 style={styles.backBtn}
                 onPress={() => {
-                  navigation.navigate('Home');
+                  navigation.goBack();
                 }}>
                 <Icon2 name="chevron-left" size={20} color="#fff" />
               </Pressable>

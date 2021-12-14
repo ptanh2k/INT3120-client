@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React, {useEffect, useReducer, useMemo, useState} from 'react';
+import React, {useEffect, useReducer, useMemo} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import SplashScreen from 'react-native-splash-screen';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -32,7 +32,7 @@ import {Alert} from 'react-native';
 import PlayListStack from './src/routes/PlayListStack';
 
 import {LogBox} from 'react-native';
-import {LoginManager, AccessToken, Profile} from 'react-native-fbsdk';
+import {LoginManager, AccessToken} from 'react-native-fbsdk';
 
 LogBox.ignoreLogs(['EventEmitter.removeListener']);
 

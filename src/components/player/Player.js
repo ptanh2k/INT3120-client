@@ -1,5 +1,12 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {View, Text, Dimensions, Animated, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  Dimensions,
+  Animated,
+  StyleSheet,
+} from 'react-native';
 
 import TrackPlayer, {Event, Capability} from 'react-native-track-player';
 
@@ -13,7 +20,7 @@ const {width, height} = Dimensions.get('window');
 
 const TRACK_PLAYER_CONTROL_OPTS = {
   stopWithApp: false, //Whether the player will be destroyed when the app closes
-  // alwaysPauseOnInterruption: true, //Whether the remote-duck event will be triggered on every interruption
+  alwaysPauseOnInterruption: true, //Whether the remote-duck event will be triggered on every interruption
   waitForBuffer: true,
   capabilities: [
     Capability.Play,
@@ -31,7 +38,7 @@ const TRACK_PLAYER_CONTROL_OPTS = {
 };
 
 const Player = ({onNext, onPrevious, onTogglePlayback, route}) => {
-  const {songs} = route.params;
+  const {songs, song} = route.params;
 
   const scrollX = useRef(new Animated.Value(0)).current;
 
@@ -40,18 +47,18 @@ const Player = ({onNext, onPrevious, onTogglePlayback, route}) => {
 
   const [songIndex, setSongIndex] = useState(0);
 
-  const isPlayerReady = useRef(false);
-  const isFromUser = useRef(true);
+  const [isPlayerReady, setIsPlayerReady] = useState(false);
 
-  const position = useRef(Animated.divide(scrollX, width)).current;
+  const getSongIndex = (ss, s) => {
+    return ss.indexOf(s);
+  };
+
+  const sIndex = getSongIndex(songs, song);
 
   useEffect(() => {
     scrollX.addListener(({value}) => {
-      // console.log(value);
-      //Get song index
       const indx = Math.round(value / width);
       setSongIndex(indx);
-      // console.log(indx);
     });
 
     TrackPlayer.setupPlayer().then(async () => {
@@ -59,8 +66,10 @@ const Player = ({onNext, onPrevious, onTogglePlayback, route}) => {
 
       await TrackPlayer.reset();
       await TrackPlayer.add(songs);
+      TrackPlayer.skip(sIndex);
+      // isPlayerReady.current = true;
+      setIsPlayerReady(true);
       TrackPlayer.play();
-      isPlayerReady.current = true;
 
       await TrackPlayer.updateOptions(TRACK_PLAYER_CONTROL_OPTS);
 
@@ -69,22 +78,17 @@ const Player = ({onNext, onPrevious, onTogglePlayback, route}) => {
 
         const trackId = (await TrackPlayer.getCurrentTrack()) - 1;
 
-        // console.log('track id', trackId, 'index', index.current);
+        console.log('track id', trackId, 'index', index.current);
 
-        if (trackId !== index.current) {
-          setSongIndex(trackId);
-          isFromUser.current = false;
+        // if (trackId !== index.current) {
+        //   setSongIndex(trackId);
 
-          if (trackId > index.current) {
-            goNext();
-          } else {
-            goPrev();
-          }
-        }
-
-        setTimeout(() => {
-          isFromUser.current = true;
-        }, 200);
+        //   if (trackId > index.current) {
+        //     goNext();
+        //   } else {
+        //     goPrev();
+        //   }
+        // }
       });
 
       TrackPlayer.addEventListener(Event.RemoteDuck, event => {
@@ -103,48 +107,38 @@ const Player = ({onNext, onPrevious, onTogglePlayback, route}) => {
   }, []);
 
   useEffect(() => {
-    if (isPlayerReady.current && isFromUser.current) {
-      TrackPlayer.skip(songs[songIndex].id)
+    if (isPlayerReady) {
+      TrackPlayer.skip(sIndex)
         .then(_ => {
           console.log('Change track');
         })
         .catch(e => console.log('Error when change track', e));
     }
-    index.current = songIndex;
-  }, [songIndex, songs]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sIndex]);
 
   const goPrev = async () => {
+    console.log('Slider index: ', songIndex);
     slider.current.scrollToOffset({
       offset: (songIndex - 1) * width,
     });
+    TrackPlayer.skipToPrevious();
   };
 
   const goNext = async () => {
+    console.log('Slider index: ', songIndex);
     slider.current.scrollToOffset({
       offset: (songIndex + 1) * width,
     });
+    TrackPlayer.skipToNext();
   };
 
   // eslint-disable-next-line no-shadow
   const renderItem = ({index, item}) => {
     return (
-      <Animated.View
-        style={[
-          {
-            width: width,
-            transform: [
-              {
-                translateX: Animated.multiply(
-                  Animated.add(position, -index),
-                  -100,
-                ),
-              },
-            ],
-          },
-          styles.itemView,
-        ]}>
-        <Animated.Image source={{uri: item.artwork}} style={styles.artwork} />
-      </Animated.View>
+      <View>
+        <Image source={{uri: item.artwork}} style={styles.artwork} />
+      </View>
     );
   };
 
@@ -158,11 +152,17 @@ const Player = ({onNext, onPrevious, onTogglePlayback, route}) => {
           showsHorizontalScrollIndicator={false}
           scrollEventThrottle={16} //Smoother animation
           data={songs}
+          initialScrollIndex={sIndex}
           renderItem={renderItem}
-          keyExtractor={item => item.id}
+          // eslint-disable-next-line no-shadow
+          getItemLayout={(data, index) => ({
+            length: width,
+            offset: width * index,
+            index,
+          })}
           onScroll={Animated.event(
             [{nativeEvent: {contentOffset: {x: scrollX}}}],
-            {useNativeDriver: true},
+            {useNativeDriver: false},
           )}
         />
       </View>
@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   artwork: {
-    width: 320,
+    width: width,
     height: 320,
     borderRadius: 5,
   },

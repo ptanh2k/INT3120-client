@@ -29,7 +29,7 @@ const PlayListStack = ({route, navigation}) => {
               <Pressable
                 style={styles.backBtn}
                 onPress={() => {
-                  navigation.navigate('BottomTabs');
+                  navigation.goBack();
                 }}>
                 <Entypo name="chevron-left" size={20} color="#fff" />
               </Pressable>
