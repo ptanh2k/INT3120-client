@@ -4,26 +4,37 @@ import {Animated, StyleSheet} from 'react-native';
 import Song from './Song';
 import songService from '../../services/songService';
 const TopSongs = ({navigation, user}) => {
-  const [song, setSong] = useState([]);
+  const [songs, setSongs] = useState([]);
 
   useEffect(() => {
     songService.getAllSongs().then(response => {
-      setSong(response);
+      let artist = '';
+      let genre = '';
+
+      const list_songs = response.map(song => {
+        artist = song.artists.map(a => a.name).join(', ');
+        genre = song.genres.map(g => g.title).join(', ');
+        return {...song, artist, genre};
+      });
+
+      setSongs(list_songs);
     });
   }, []);
 
-  song.sort((firstItem, secondItem) => secondItem.views - firstItem.views);
-  const five_song = song.slice(0, 15);
+  songs.sort((firstItem, secondItem) => secondItem.views - firstItem.views);
+  const five_songs = songs.slice(0, 15);
+
+  console.log(five_songs[0]);
 
   return (
     <>
       <Animated.FlatList
         style={styles.topSong}
-        data={five_song}
+        data={five_songs}
         keyExtractor={item => item.id}
         renderItem={({item}) => (
           <Song
-            TopSongs={five_song}
+            songs={five_songs}
             song={item}
             navigation={navigation}
             user={user}
