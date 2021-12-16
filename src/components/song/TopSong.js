@@ -24,8 +24,6 @@ const TopSongs = ({navigation, user}) => {
   songs.sort((firstItem, secondItem) => secondItem.views - firstItem.views);
   const five_songs = songs.slice(0, 15);
 
-  console.log(five_songs[0]);
-
   return (
     <>
       <Animated.FlatList
