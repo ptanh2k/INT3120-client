@@ -3,19 +3,21 @@ import {Pressable, Dimensions, StyleSheet} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import Entypo from 'react-native-vector-icons/Entypo';
-import Favorite from '../screen/Favorite';
-
+import Genre from '../screen/Genre';
 const Stack = createStackNavigator();
 
 const screenWidth = Dimensions.get('window').width;
 
-const FavoriteStack = ({route, navigation}) => {
+const GenreStack = ({route, navigation}) => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Favorite"
-        component={Favorite}
-        initialParams={{username: route.params.username}}
+        name={route.params.genre}
+        component={Genre}
+        initialParams={{
+          username: route.params.username,
+          genre: route.params.genre,
+        }}
         options={{
           headerTitleAlign: 'center',
           headerStyle: {
@@ -45,4 +47,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FavoriteStack;
+export default GenreStack;

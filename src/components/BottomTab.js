@@ -1,9 +1,11 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-vector-icons/AntDesign';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import Entypo from 'react-native-vector-icons/Entypo';
 
 import HomeStack from '../routes/HomeStack';
 import ProfileStack from '../routes/ProfileStack';
+import PlaylistStack from '../routes/PlaylistStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -23,7 +25,11 @@ const BottomTabs = ({route, navigation}) => {
             iconName = 'user';
           }
 
-          return <Icon name={iconName} size={20} />;
+          return route.name === 'PlaylistTab' ? (
+            <Entypo name="folder-music" size={20} />
+          ) : (
+            <AntDesign name={iconName} size={20} />
+          );
         },
         tabBarStyle: {
           backgroundColor: '#674EB1',
@@ -36,6 +42,12 @@ const BottomTabs = ({route, navigation}) => {
         name="HomeTab"
         component={HomeStack}
         options={{tabBarLabel: 'Home'}}
+        initialParams={{username: route.params.username}}
+      />
+      <Tab.Screen
+        name="PlaylistTab"
+        component={PlaylistStack}
+        options={{tabBarLabel: 'My Playlist'}}
         initialParams={{username: route.params.username}}
       />
       <Tab.Screen
