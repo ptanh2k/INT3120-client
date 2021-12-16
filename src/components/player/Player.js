@@ -1,12 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  Dimensions,
-  Animated,
-  StyleSheet,
-} from 'react-native';
+import {View, Text, Dimensions, Animated, StyleSheet} from 'react-native';
 
 import TrackPlayer, {
   Event,
@@ -51,6 +44,9 @@ const Player = ({onNext, onPrevious, onTogglePlayback, navigation, route}) => {
   const [songIndex, setSongIndex] = useState(0);
   const [isPlayerReady, setIsPlayerReady] = useState(false);
   const [isTrackRepeatActive, setIsTrackRepeatActive] = useState(false);
+
+  // Change album artwork
+  const position = useRef(new Animated.divide(scrollX, width)).current;
 
   const getSongIndex = (ss, s) => {
     return ss.indexOf(s);
@@ -152,9 +148,20 @@ const Player = ({onNext, onPrevious, onTogglePlayback, navigation, route}) => {
   // eslint-disable-next-line no-shadow
   const renderItem = ({index, item}) => {
     return (
-      <View>
-        <Image source={{uri: item.artwork}} style={styles.artwork} />
-      </View>
+      <Animated.View
+        style={{
+          width: width,
+          transform: [
+            {
+              translateX: Animated.multiply(
+                Animated.add(position, -index),
+                -100,
+              ),
+            },
+          ],
+        }}>
+        <Animated.Image source={{uri: item.artwork}} style={styles.artwork} />
+      </Animated.View>
     );
   };
 
