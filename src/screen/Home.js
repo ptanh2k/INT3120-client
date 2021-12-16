@@ -31,7 +31,7 @@ const Home = ({route, navigation}) => {
                     <TouchableOpacity
                       style={styles.cardStyle}
                       onPress={() => {
-                        navigation.navigate('PlayListStack', {
+                        navigation.navigate('GenreStack', {
                           genre: rowData.title,
                         });
                       }}>

@@ -23,13 +23,14 @@ import Register from './src/screen/Register';
 import editProfile from './src/screen/editProfile';
 import editprofileStack from './src/routes/editProfileStack';
 import FavoriteStack from './src/routes/FavoriteStack';
+import PlaylistStack from './src/routes/PlaylistStack';
+import GenreStack from './src/routes/GenreStack';
 
 import AuthContext from './src/context/AuthContext';
 import {reducer, initialState, ACTIONS} from './src/utils/reducer';
 import loginService from './src/services/loginService';
 import songService from './src/services/songService';
 import {Alert} from 'react-native';
-import PlayListStack from './src/routes/PlayListStack';
 
 import {LogBox} from 'react-native';
 import {LoginManager, AccessToken} from 'react-native-fbsdk';
@@ -174,11 +175,16 @@ const App = ({navigation}) => {
                   }}
                 />
                 <Stack.Screen
-                  name="PlayListStack"
-                  component={PlayListStack}
+                  name="PlaylistStack"
+                  component={PlaylistStack}
                   initialParams={{
                     username: state.userName,
                   }}
+                />
+                <Stack.Screen
+                  name="GenreStack"
+                  component={GenreStack}
+                  initialParams={{username: state.userName}}
                 />
                 <Stack.Screen name="Search" component={Search} />
                 <Stack.Screen
