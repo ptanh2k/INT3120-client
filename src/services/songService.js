@@ -31,4 +31,39 @@ const getFavorite = username => {
   return request.then(response => response.data);
 };
 
-export default {getAllSongs, addToFavorite, getFavorite, setToken};
+const getUserPlaylist = username => {
+  const config = {
+    headers: {Authorization: token},
+  };
+
+  const request = axios.get(`${baseUrl}/playlist-user/${username}`, config);
+  return request.then(response => response.data);
+};
+
+const createNewPlaylist = async obj => {
+  const config = {
+    headers: {Authorization: token},
+  };
+
+  const response = await axios.post(`${baseUrl}/playlist/`, obj, config);
+  return response.data;
+};
+
+const addSongToPlaylist = async obj => {
+  const config = {
+    headers: {Authorization: token},
+  };
+
+  const response = await axios.post(`${baseUrl}/playlist-song/`, obj, config);
+  return response.data;
+};
+
+export default {
+  getAllSongs,
+  addToFavorite,
+  getFavorite,
+  getUserPlaylist,
+  createNewPlaylist,
+  addSongToPlaylist,
+  setToken,
+};

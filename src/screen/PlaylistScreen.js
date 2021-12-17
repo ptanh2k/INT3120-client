@@ -2,28 +2,35 @@ import React, {useState, useEffect} from 'react';
 import {Text, Animated, Dimensions, StyleSheet} from 'react-native';
 
 import Container from '../components/Container';
-import Song from '../components/song/Song';
+import Playlist from '../components/playlist/Playlist';
 
 import songService from '../services/songService';
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
-const Playlist = ({route, navigation, currList}) => {
-  const [displayed, setDisplayed] = useState([]);
+const PlaylistScreen = ({route, navigation}) => {
+  const [playlists, setPlaylists] = useState([]);
+  const {username} = route.params;
+
+  useEffect(() => {
+    songService.getUserPlaylist(username).then(response => {
+      setPlaylists(response);
+    });
+  }, [username]);
 
   return (
     <Container style={styles.container}>
-      {displayed.length === 0 ? (
+      {playlists.length === 0 ? (
         <Text style={styles.emptyText}>No playlist added</Text>
       ) : (
         <Animated.FlatList
-          data={displayed}
+          data={playlists}
           keyExtractor={item => item.id}
           renderItem={({item}) => (
-            <Song
-              songs={displayed}
-              song={item}
+            <Playlist
+              playlists={playlists}
+              playlist={item}
               navigation={navigation}
               user={route.params.username}
             />
@@ -44,4 +51,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Playlist;
+export default PlaylistScreen;

@@ -4,7 +4,9 @@ import {Modal, Portal, Button} from 'react-native-paper';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import Entypo from 'react-native-vector-icons/Entypo';
-import Playlist from '../screen/Playlist';
+import PlaylistScreen from '../screen/PlaylistScreen';
+
+import songService from '../services/songService';
 
 const Stack = createStackNavigator();
 
@@ -12,24 +14,28 @@ const screenWidth = Dimensions.get('window').width;
 
 const PlaylistStack = ({route, navigation}) => {
   const [listName, setListName] = useState('');
-  const [currList, setCurrList] = useState([]);
   const [visible, setVisible] = useState(false);
 
   const showAddModal = () => setVisible(true);
-  const createPlaylist = () => {
-    setCurrList([...currList, listName]);
-    setListName('');
-    setVisible(false);
-  };
 
-  console.log(currList);
+  const createPlaylist = () => {
+    let newPlaylist = {
+      title: listName,
+      username: route.params.username,
+    };
+
+    songService.createNewPlaylist(newPlaylist).then(() => {
+      setListName('');
+      setVisible(false);
+    });
+  };
 
   return (
     <Stack.Navigator>
       <Stack.Screen
         name="Playlist"
-        component={Playlist}
-        initialParams={{username: route.params.username, currList: currList}}
+        component={PlaylistScreen}
+        initialParams={{username: route.params.username}}
         options={{
           headerTitleAlign: 'center',
           headerStyle: {
