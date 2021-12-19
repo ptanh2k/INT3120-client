@@ -58,6 +58,15 @@ const addSongToPlaylist = async obj => {
   return response.data;
 };
 
+const increaseStreamCount = id => {
+  const config = {
+    headers: {Authorization: token},
+  };
+
+  const request = axios.put(`${baseUrl}/song/views/${id}`, undefined, config);
+  return request.then(response => response.data);
+};
+
 export default {
   getAllSongs,
   addToFavorite,
@@ -65,5 +74,6 @@ export default {
   getUserPlaylist,
   createNewPlaylist,
   addSongToPlaylist,
+  increaseStreamCount,
   setToken,
 };

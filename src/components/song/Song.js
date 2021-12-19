@@ -45,6 +45,7 @@ const Song = ({songs, song, user, navigation}) => {
         style={styles.song}
         onPress={() => {
           navigation.navigate('Player', {songs, song});
+          songService.increaseStreamCount(song.id);
         }}>
         <Image style={styles.artworkImage} source={{uri: song.artwork}} />
         <View style={styles.divide}>
