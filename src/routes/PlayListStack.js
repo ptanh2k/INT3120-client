@@ -1,5 +1,11 @@
 import React, {useState} from 'react';
-import {Pressable, Dimensions, StyleSheet, TextInput} from 'react-native';
+import {
+  Pressable,
+  Dimensions,
+  StyleSheet,
+  ToastAndroid,
+  TextInput,
+} from 'react-native';
 import {Modal, Portal, Button} from 'react-native-paper';
 import {createStackNavigator} from '@react-navigation/stack';
 
@@ -27,6 +33,12 @@ const PlaylistStack = ({route, navigation}) => {
     songService.createNewPlaylist(newPlaylist).then(() => {
       setListName('');
       setVisible(false);
+      navigation.goBack();
+      ToastAndroid.showWithGravity(
+        'New playlist created',
+        ToastAndroid.SHORT,
+        ToastAndroid.CENTER,
+      );
     });
   };
 
