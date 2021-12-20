@@ -1,5 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useCallback} from 'react';
 import {Text, Animated, Dimensions, StyleSheet} from 'react-native';
+import {useFocusEffect} from '@react-navigation/native';
 
 import Container from '../components/Container';
 import Playlist from '../components/playlist/Playlist';
@@ -13,11 +14,14 @@ const PlaylistScreen = ({route, navigation}) => {
   const [playlists, setPlaylists] = useState([]);
   const {username} = route.params;
 
-  useEffect(() => {
-    songService.getUserPlaylist(username).then(response => {
-      setPlaylists(response);
-    });
-  }, [username]);
+  useFocusEffect(
+    useCallback(() => {
+      songService.getUserPlaylist(username).then(response => {
+        setPlaylists(response);
+      });
+      console.log('Render');
+    }, [username]),
+  );
 
   return (
     <Container style={styles.container}>
