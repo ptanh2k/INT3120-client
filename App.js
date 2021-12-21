@@ -25,6 +25,7 @@ import editprofileStack from './src/routes/editProfileStack';
 import FavoriteStack from './src/routes/FavoriteStack';
 import PlaylistStack from './src/routes/PlaylistStack';
 import GenreStack from './src/routes/GenreStack';
+import SongInListStack from './src/routes/SongInListStack';
 
 import AuthContext from './src/context/AuthContext';
 import {reducer, initialState, ACTIONS} from './src/utils/reducer';
@@ -185,6 +186,10 @@ const App = ({navigation}) => {
                   name="GenreStack"
                   component={GenreStack}
                   initialParams={{username: state.userName}}
+                />
+                <Stack.Screen
+                  name="SongInListStack"
+                  component={SongInListStack}
                 />
                 <Stack.Screen name="Search" component={Search} />
                 <Stack.Screen
