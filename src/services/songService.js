@@ -67,6 +67,11 @@ const increaseStreamCount = id => {
   return request.then(response => response.data);
 };
 
+const getSongInList = id => {
+  const request = axios.get(`${baseUrl}/playlist-song/${id}`);
+  return request.then(response => response.data);
+};
+
 export default {
   getAllSongs,
   addToFavorite,
@@ -75,5 +80,6 @@ export default {
   createNewPlaylist,
   addSongToPlaylist,
   increaseStreamCount,
+  getSongInList,
   setToken,
 };

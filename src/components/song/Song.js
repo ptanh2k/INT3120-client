@@ -14,9 +14,11 @@ import Entypo from 'react-native-vector-icons/Entypo';
 
 import TextStyles from '../../constants/styles/TextStyles';
 import songService from '../../services/songService';
+import PlaylistModal from '../PlaylistModal';
 
 const Song = ({songs, song, user, navigation}) => {
   const [visible, isVisible] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const openMenu = () => isVisible(true);
 
@@ -39,40 +41,60 @@ const Song = ({songs, song, user, navigation}) => {
     });
   };
 
+  const addToPlaylist = () => {
+    setShowModal(true);
+    isVisible(false);
+  };
+
   return (
-    <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.song}
-        onPress={() => {
-          navigation.navigate('Player', {songs, song});
-          songService.increaseStreamCount(song.id);
-        }}>
-        <Image style={styles.artworkImage} source={{uri: song.artwork}} />
-        <View style={styles.divide}>
-          <Text style={[TextStyles.songTitle, styles.songTitle]}>
-            {song.title}
-          </Text>
-          <Text style={[TextStyles.artist, styles.artist]}>{song.artist}</Text>
-        </View>
-        <View style={styles.songInteraction}>
-          <Menu
-            visible={visible}
-            onDismiss={closeMenu}
-            anchor={
-              <Pressable onPress={openMenu}>
-                <Entypo name="dots-three-vertical" size={15} color="#fff" />
-              </Pressable>
-            }>
-            <Menu.Item
-              onPress={() => addToFavorite()}
-              title="Add to favorites"
-            />
-            <Divider />
-            <Menu.Item onPress={() => {}} title="Add to playlist" />
-          </Menu>
-        </View>
-      </TouchableOpacity>
-    </View>
+    <>
+      {showModal ? (
+        <PlaylistModal
+          showModal={showModal}
+          user={user}
+          setShowModal={setShowModal}
+          song={song}
+        />
+      ) : null}
+      <View style={styles.container}>
+        <TouchableOpacity
+          style={styles.song}
+          onPress={() => {
+            navigation.navigate('Player', {songs, song});
+            songService.increaseStreamCount(song.id);
+          }}>
+          <Image style={styles.artworkImage} source={{uri: song.artwork}} />
+          <View style={styles.divide}>
+            <Text style={[TextStyles.songTitle, styles.songTitle]}>
+              {song.title}
+            </Text>
+            <Text style={[TextStyles.artist, styles.artist]}>
+              {song.artist}
+            </Text>
+          </View>
+          <View style={styles.songInteraction}>
+            <Menu
+              visible={visible}
+              onDismiss={closeMenu}
+              anchor={
+                <Pressable onPress={openMenu}>
+                  <Entypo name="dots-three-vertical" size={15} color="#fff" />
+                </Pressable>
+              }>
+              <Menu.Item
+                onPress={() => addToFavorite()}
+                title="Add to favorites"
+              />
+              <Divider />
+              <Menu.Item
+                onPress={() => addToPlaylist()}
+                title="Add to playlist"
+              />
+            </Menu>
+          </View>
+        </TouchableOpacity>
+      </View>
+    </>
   );
 };
 

@@ -22,7 +22,13 @@ const Playlist = ({playlists, playlist, user, navigation}) => {
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.playlist}
-        onPress={() => console.log('Song screen')}>
+        onPress={() => {
+          navigation.navigate('SongInListStack', {
+            title: playlist.title,
+            id: playlist.id,
+            user: user,
+          });
+        }}>
         <Image style={styles.artworkImage} source={{uri: playlist.artwork}} />
         <View style={styles.titleArea}>
           <Text style={styles.title}>{playlist.title}</Text>
