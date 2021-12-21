@@ -23,7 +23,7 @@ import Register from './src/screen/Register';
 import editProfile from './src/screen/editProfile';
 import editprofileStack from './src/routes/editProfileStack';
 import FavoriteStack from './src/routes/FavoriteStack';
-import PlaylistStack from './src/routes/PlaylistStack';
+import PlayListStack from './src/routes/PlayListStack';
 import GenreStack from './src/routes/GenreStack';
 import SongInListStack from './src/routes/SongInListStack';
 
@@ -177,7 +177,7 @@ const App = ({navigation}) => {
                 />
                 <Stack.Screen
                   name="PlaylistStack"
-                  component={PlaylistStack}
+                  component={PlayListStack}
                   initialParams={{
                     username: state.userName,
                   }}

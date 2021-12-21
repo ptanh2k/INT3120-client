@@ -5,7 +5,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 
 import HomeStack from '../routes/HomeStack';
 import ProfileStack from '../routes/ProfileStack';
-import PlaylistStack from '../routes/PlaylistStack';
+import PlayListStack from '../routes/PlayListStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -46,7 +46,7 @@ const BottomTabs = ({route, navigation}) => {
       />
       <Tab.Screen
         name="PlaylistTab"
-        component={PlaylistStack}
+        component={PlayListStack}
         options={{tabBarLabel: 'My Playlist'}}
         initialParams={{username: route.params.username}}
       />
