@@ -36,6 +36,8 @@ target 'BTL' do
 
   pod 'RNKeychain', :path => '../node_modules/react-native-keychain'
 
+  pod 'react-native-fbsdk-next', :path => '../node_modules/react-native-fbsdk-next'
+
   target 'BTLTests' do
     inherit! :complete
     # Pods for testing

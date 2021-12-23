@@ -4,12 +4,12 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.oblador.keychain.KeychainPackage;
 import com.swmansion.reanimated.ReanimatedPackage;
 import com.reactnative.ivpusic.imagepicker.PickerPackage;
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
-import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.guichaguri.trackplayer.TrackPlayer;
 import com.reactnativecommunity.slider.ReactSliderPackage;
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
@@ -40,12 +40,12 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
+            new FBSDKPackage(),
             new KeychainPackage(),
             new ReanimatedPackage(),
             new PickerPackage(),
             new SafeAreaContextPackage(),
             new LinearGradientPackage(),
-            new FBSDKPackage(),
             new TrackPlayer(),
             new ReactSliderPackage(),
             new RNScreensPackage(),
