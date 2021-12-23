@@ -5,6 +5,7 @@ import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
+import com.reactnativegooglesignin.RNGoogleSigninPackage;
 import com.oblador.keychain.KeychainPackage;
 import com.swmansion.reanimated.ReanimatedPackage;
 import com.reactnative.ivpusic.imagepicker.PickerPackage;
@@ -41,6 +42,8 @@ public class MainApplication extends Application implements ReactApplication {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
             new FBSDKPackage(),
+            new RNGoogleSigninPackage(),
+
             new KeychainPackage(),
             new ReanimatedPackage(),
             new PickerPackage(),

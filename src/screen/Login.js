@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {
   View,
   Text,
@@ -10,7 +10,10 @@ import {
   TouchableWithoutFeedback,
   Alert,
 } from 'react-native';
-
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+} from '@react-native-google-signin/google-signin';
 import Icon from 'react-native-vector-icons/AntDesign';
 
 import AuthContext from '../context/AuthContext';
@@ -26,10 +29,18 @@ const Divider = props => {
 };
 
 const Login = ({navigation}) => {
+  useEffect(() => {
+    GoogleSignin.configure({
+      webClientId:
+        '705680022188-ggdiam319t7a3aq439khl0gevt1cgj2d.apps.googleusercontent.com',
+      offlineAccess: true,
+    });
+  }, []);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const {handleLogin, handleFBLogin} = useContext(AuthContext);
+  const {handleLogin, handleFBLogin, handleGoogleLogin} =
+    useContext(AuthContext);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -81,18 +92,13 @@ const Login = ({navigation}) => {
             <Text style={styles.facebookButtonTitle}>Login with facebook</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            style={styles.facebookButton}
-            onPress={async () => {
-              // _signIn();
-            }}>
-            <Icon
-              name="facebook-square"
-              size={40}
-              style={styles.logoFacebook}
-            />
-            <Text style={styles.facebookButtonTitle}>Login with google</Text>
-          </TouchableOpacity>
+          <GoogleSigninButton
+            // eslint-disable-next-line react-native/no-inline-styles
+            style={{width: 300, height: 48, borderRadius: 10, marginTop: 10}}
+            size={GoogleSigninButton.Size.Wide}
+            color={GoogleSigninButton.Color.Dark}
+            onPress={handleGoogleLogin}
+          />
 
           <View style={styles.registerForm}>
             <Text>Need a new account?</Text>

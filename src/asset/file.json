@@ -1,0 +1,16 @@
+{
+  "scopes": [
+    "https://www.googleapis.com/auth/userinfo.profile",
+    "https://www.googleapis.com/auth/userinfo.email"
+  ],
+  "serverAuthCode": "4/0AX4XfWjc6a8cbetn6xT33YMjRRLsXrJicxYf8HiVcpRHygsJTryo3juBbbmIXjUbMJMbhQ",
+  "idToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImQ5OGY0OWJjNmNhNDU4MWVhZThkZmFkZDQ5NGZjZTEwZWEyM2FhYjAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI3MDU2ODAwMjIxODgtczYxaG92czVqc3FvazQyNWQ5NGp2aHNvamFxaTEzNzguYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI3MDU2ODAwMjIxODgtZ2dkaWFtMzE5dDdhM2FxNDM5a2hsMGdldnQxY2dqMmQuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDM5MDQxOTQ0MDcwNTA2NjUxNjQiLCJlbWFpbCI6Imxob2FuZzE3MDYyMDAwQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoiSG_DoG5nIEzDqiBNaW5oIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hLS9BT2gxNEdnTjdfWG1ob0pxRklPR2dhcThhUTZZcTJ0SXA3ck1KQ1FYR29xZD1zOTYtYyIsImdpdmVuX25hbWUiOiJIb8OgbmciLCJmYW1pbHlfbmFtZSI6IkzDqiBNaW5oIiwibG9jYWxlIjoidmkiLCJpYXQiOjE2NDAyNDM4MzgsImV4cCI6MTY0MDI0NzQzOH0.tBKLSKK-KSRzrW_bEOmOwDFCnp4yxG0EhlGaabgV-LJ0GhDrmTnM9V_Q6yA_zlKBHwoAkOmzTXa9W-hn8JtTWc6Ll8CaIZusNvqk7_CvfGC6VQi4e_JptskiiXIh_ccWmY-DQTqeQEX7fiRKSTD8ZnP4QNKw8PwejdiVrs8mWc5C_jA_76f7mxkemq7bwZauR5apJqyqr9KNLZy2yXFkyDCJL6YuDI_y2T6jvSQejSTVq6OZUmrY-ELBMhCTlOHwSX69Shj3Dr_vUvAiwcsRYo-P6hmV-LHHkRMb8Fh2wqTptmsoGPuvrxP12PPxslh-X01l_llpmwGXD19MbMyWHQ",
+  "user": {
+    "photo": "https://lh3.googleusercontent.com/a-/AOh14GgN7_XmhoJqFIOGgaq8aQ6Yq2tIp7rMJCQXGoqd=s96-c",
+    "email": "lhoang17062000@gmail.com",
+    "familyName": "Lê Minh",
+    "givenName": "Hoàng",
+    "name": "Hoàng Lê Minh",
+    "id": "103904194407050665164"
+  }
+}
