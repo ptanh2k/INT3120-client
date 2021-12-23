@@ -1,46 +1,39 @@
 import React, {useEffect, useState} from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import Entypo from 'react-native-vector-icons/Entypo';
 import {
   View,
-  Text,
   TextInput,
   StyleSheet,
   TouchableWithoutFeedback,
   Keyboard,
   Dimensions,
 } from 'react-native';
-import {TouchableRipple} from 'react-native-paper';
 
 import Container from '../components/Container';
 import {FlatList} from 'react-native-gesture-handler';
 import songService from '../services/songService';
 
-const {width, height} = Dimensions.get('window');
+import Song from '../components/song/Song';
 
-const Search = ({navigation}) => {
+const screenWidth = Dimensions.get('window').width;
+
+const Search = ({route, navigation}) => {
   const [filterData, setFilterData] = useState([]);
   const [masterData, setMasterData] = useState([]);
   const [search, setSearch] = useState('');
+
+  const {username} = route.params;
+
   useEffect(() => {
     fetchPost();
     return () => {};
   }, []);
+
   const fetchPost = () => {
     songService.getAllSongs().then(responseJson => {
       setFilterData(responseJson);
       setMasterData(responseJson);
     });
-  };
-
-  const ItemView = ({item}) => {
-    return (
-      <Text style={styles.itemStyle}>
-        {item.id}
-        {'. '}
-        {item.title.toUpperCase()}
-      </Text>
-    );
   };
 
   const searchFilter = text => {
@@ -61,22 +54,9 @@ const Search = ({navigation}) => {
     }
   };
 
-  const ItemSeparatorView = () => {
-    return <View style={styles.itemSeparatorView} />;
-  };
-
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Container>
-        <View style={styles.up}>
-          <TouchableRipple
-            onPress={() => {
-              navigation.navigate('Home');
-            }}>
-            <Entypo name="chevron-left" size={20} style={styles.backBtn} />
-          </TouchableRipple>
-          <Text style={styles.title}>Search</Text>
-        </View>
         <View style={styles.down}>
           <View style={styles.box}>
             <TextInput
@@ -92,9 +72,15 @@ const Search = ({navigation}) => {
         <View>
           <FlatList
             data={filterData}
-            keyExtractor={(item, index) => index.toString()}
-            ItemSeparatorComponent={ItemSeparatorView}
-            renderItem={ItemView}
+            keyExtractor={item => item.id}
+            renderItem={({item}) => (
+              <Song
+                songs={filterData}
+                song={item}
+                navigation={navigation}
+                user={username}
+              />
+            )}
           />
         </View>
       </Container>
@@ -148,7 +134,7 @@ const styles = StyleSheet.create({
   backBtn: {
     color: 'white',
     marginTop: 17,
-    marginLeft: width / 30,
+    marginLeft: screenWidth / 30,
   },
 
   itemStyle: {

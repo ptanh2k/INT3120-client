@@ -2,36 +2,34 @@ import React from 'react';
 import {Pressable, Dimensions, StyleSheet} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import AntDesign from 'react-native-vector-icons/AntDesign';
-
-import Home from '../screen/Home';
+import Entypo from 'react-native-vector-icons/Entypo';
+import Search from '../screen/Search';
 
 const Stack = createStackNavigator();
 
 const screenWidth = Dimensions.get('window').width;
 
-const HomeStack = ({route, navigation}) => {
+const SearchStack = ({route, navigation}) => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Home"
-        component={Home}
+        name="Search"
+        component={Search}
         initialParams={{username: route.params.username}}
         options={{
-          headerLeft: () => null,
-          headerTitle: 'Home',
+          headerTitleAlign: 'center',
           headerStyle: {
             backgroundColor: '#0C0C25',
           },
           headerTintColor: '#fff',
-          headerRight: () => {
+          headerLeft: () => {
             return (
               <Pressable
-                style={styles.searchBtn}
+                style={styles.backBtn}
                 onPress={() => {
-                  navigation.navigate('SearchStack');
+                  navigation.goBack();
                 }}>
-                <AntDesign name="search1" size={20} color="#fff" />
+                <Entypo name="chevron-left" size={20} color="#fff" />
               </Pressable>
             );
           },
@@ -42,9 +40,9 @@ const HomeStack = ({route, navigation}) => {
 };
 
 const styles = StyleSheet.create({
-  searchBtn: {
-    marginRight: screenWidth / 30,
+  backBtn: {
+    marginLeft: screenWidth / 30,
   },
 });
 
-export default HomeStack;
+export default SearchStack;

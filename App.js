@@ -15,7 +15,6 @@ import * as KeyChain from 'react-native-keychain';
 
 import Login from './src/screen/Login';
 import BottomTabs from './src/components/BottomTab';
-import Search from './src/screen/Search';
 import HomeStack from './src/routes/HomeStack';
 import ProfileStack from './src/routes/ProfileStack';
 import Player from './src/components/player/Player';
@@ -26,6 +25,7 @@ import FavoriteStack from './src/routes/FavoriteStack';
 import PlayListStack from './src/routes/PlayListStack';
 import GenreStack from './src/routes/GenreStack';
 import SongInListStack from './src/routes/SongInListStack';
+import SearchStack from './src/routes/SearchStack';
 
 import AuthContext from './src/context/AuthContext';
 import {reducer, initialState, ACTIONS} from './src/utils/reducer';
@@ -53,6 +53,9 @@ const App = ({navigation}) => {
 
       try {
         credentials = await KeyChain.getGenericPassword();
+        if (credentials.password === undefined) {
+          songService.setToken(null);
+        }
         songService.setToken(credentials.password);
       } catch (e) {
         console.log('Restore token failed');
@@ -161,7 +164,7 @@ const App = ({navigation}) => {
             screenOptions={{
               headerShown: false,
             }}>
-            {state.userToken === undefined || state.userToken === null ? (
+            {state.userToken === null ? (
               <>
                 <Stack.Screen
                   name="login"
@@ -211,7 +214,11 @@ const App = ({navigation}) => {
                   name="SongInListStack"
                   component={SongInListStack}
                 />
-                <Stack.Screen name="Search" component={Search} />
+                <Stack.Screen
+                  name="SearchStack"
+                  component={SearchStack}
+                  initialParams={{username: state.userName}}
+                />
                 <Stack.Screen
                   name="Player"
                   component={Player}
