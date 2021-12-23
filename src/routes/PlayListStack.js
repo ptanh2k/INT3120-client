@@ -18,7 +18,7 @@ const Stack = createStackNavigator();
 
 const screenWidth = Dimensions.get('window').width;
 
-const PlaylistStack = ({route, navigation}) => {
+const PlayListStack = ({route, navigation}) => {
   const [listName, setListName] = useState('');
   const [visible, setVisible] = useState(false);
 
@@ -117,4 +117,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PlaylistStack;
+export default PlayListStack;
