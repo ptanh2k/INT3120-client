@@ -35,7 +35,7 @@ import {Alert} from 'react-native';
 
 import {LogBox} from 'react-native';
 import {LoginManager, AccessToken} from 'react-native-fbsdk-next';
-
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
 LogBox.ignoreLogs(['EventEmitter.removeListener']);
 
 const Stack = createStackNavigator();
@@ -124,6 +124,26 @@ const App = ({navigation}) => {
               username: profile.name,
             });
           }
+        } catch (error) {
+          Alert.alert('Error:' + error);
+          console.log(error);
+        }
+      },
+
+      handleGoogleLogin: async () => {
+        try {
+          const data = await GoogleSignin.signIn();
+
+          let GoogleToken = data.idToken;
+          let GoogleUser = data.user.name;
+          console.log(GoogleToken);
+          await KeyChain.setGenericPassword(GoogleUser, GoogleToken);
+          songService.setToken(GoogleToken);
+          dispatch({
+            type: ACTIONS.LOGIN,
+            token: GoogleToken,
+            username: GoogleUser,
+          });
         } catch (error) {
           Alert.alert('Error:' + error);
           console.log(error);
