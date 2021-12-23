@@ -176,7 +176,7 @@ const App = ({navigation}) => {
                   }}
                 />
                 <Stack.Screen
-                  name="PlaylistStack"
+                  name="PlayListStack"
                   component={PlayListStack}
                   initialParams={{
                     username: state.userName,
