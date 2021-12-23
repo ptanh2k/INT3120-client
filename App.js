@@ -34,7 +34,7 @@ import songService from './src/services/songService';
 import {Alert} from 'react-native';
 
 import {LogBox} from 'react-native';
-import {LoginManager, AccessToken} from 'react-native-fbsdk';
+import {LoginManager, AccessToken} from 'react-native-fbsdk-next';
 
 LogBox.ignoreLogs(['EventEmitter.removeListener']);
 
@@ -141,7 +141,7 @@ const App = ({navigation}) => {
             screenOptions={{
               headerShown: false,
             }}>
-            {state.userToken === null ? (
+            {state.userToken === undefined || state.userToken === null ? (
               <>
                 <Stack.Screen
                   name="login"
