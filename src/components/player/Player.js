@@ -34,7 +34,7 @@ const TRACK_PLAYER_CONTROL_OPTS = {
 };
 
 const Player = ({onNext, onPrevious, onTogglePlayback, navigation, route}) => {
-  const {songs, song} = route.params;
+  const {songs, song, user} = route.params;
 
   const scrollX = useRef(new Animated.Value(0)).current;
 
@@ -207,6 +207,8 @@ const Player = ({onNext, onPrevious, onTogglePlayback, navigation, route}) => {
           onRepeat={onRepeat}
           onShuffle={onShuffle}
           isTrackRepeatActive={isTrackRepeatActive}
+          navigation={navigation}
+          user={user}
         />
       </View>
     </Container>
