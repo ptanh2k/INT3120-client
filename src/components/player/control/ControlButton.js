@@ -1,13 +1,21 @@
 import React, {useEffect, useState} from 'react';
 
-import {View, ActivityIndicator, Dimensions, StyleSheet} from 'react-native';
-import {TouchableRipple} from 'react-native-paper';
+import {
+  View,
+  Animated,
+  ActivityIndicator,
+  Dimensions,
+  StyleSheet,
+} from 'react-native';
+import {TouchableRipple, Modal, Portal} from 'react-native-paper';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
 
 import TrackPlayer from 'react-native-track-player';
 import {usePlaybackState} from 'react-native-track-player/lib/hooks';
+
+import Song from '../../song/Song';
 
 const screenHeight = Dimensions.get('window').height;
 
@@ -17,9 +25,13 @@ const ControlButton = ({
   onRepeat,
   onShuffle,
   isTrackRepeatActive,
+  navigation,
+  user,
 }) => {
   const playbackState = usePlaybackState();
   const [isPlaying, setIsPlaying] = useState('paused');
+  const [showQueue, setShowQueue] = useState(false);
+  const [currentQueue, setCurrentQueue] = useState([]);
 
   useEffect(() => {
     if (playbackState === 'playing' || playbackState === 3) {
@@ -54,8 +66,39 @@ const ControlButton = ({
     }
   };
 
+  const showPlayingQueue = async () => {
+    const currQueue = await TrackPlayer.getQueue();
+    setCurrentQueue(currQueue);
+    setShowQueue(true);
+  };
+
+  const closePlayingQueue = () => {
+    setShowQueue(false);
+  };
+
   return (
     <View style={styles.container}>
+      <>
+        <Portal>
+          <Modal
+            visible={showQueue}
+            onDismiss={closePlayingQueue}
+            contentContainerStyle={styles.queueModal}>
+            <Animated.FlatList
+              data={currentQueue}
+              keyExtractor={item => item.id}
+              renderItem={({item}) => (
+                <Song
+                  songs={currentQueue}
+                  song={item}
+                  navigation={navigation}
+                  user={user}
+                />
+              )}
+            />
+          </Modal>
+        </Portal>
+      </>
       <View style={styles.mainController}>
         <TouchableRipple style={styles.prevBtn} onPress={onPrev}>
           <AntDesign
@@ -86,6 +129,9 @@ const ControlButton = ({
         <TouchableRipple style={styles.shuffleBtn} onPress={onShuffle}>
           <Entypo name="shuffle" size={screenHeight / 35} color="black" />
         </TouchableRipple>
+        <TouchableRipple style={styles.queueBtn} onPress={showPlayingQueue}>
+          <Entypo name="list" size={screenHeight / 25} color="black" />
+        </TouchableRipple>
       </View>
     </View>
   );
@@ -112,6 +158,12 @@ const styles = StyleSheet.create({
   },
   repeatBtn: {
     marginRight: 55,
+  },
+  queueBtn: {
+    marginLeft: 55,
+  },
+  queueModal: {
+    backgroundColor: '#000',
   },
 });
 

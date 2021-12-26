@@ -16,7 +16,7 @@ import TextStyles from '../../constants/styles/TextStyles';
 import songService from '../../services/songService';
 import PlaylistModal from '../PlaylistModal';
 
-const Song = ({songs, song, user, navigation}) => {
+const Song = ({songs, song, user, navigation, showInQueue}) => {
   const [visible, isVisible] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
@@ -60,7 +60,7 @@ const Song = ({songs, song, user, navigation}) => {
         <TouchableOpacity
           style={styles.song}
           onPress={() => {
-            navigation.navigate('Player', {songs, song});
+            navigation.navigate('Player', {songs, song, user});
             songService.increaseStreamCount(song.id);
           }}>
           <Image style={styles.artworkImage} source={{uri: song.artwork}} />
