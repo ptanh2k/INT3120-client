@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, ImageBackground} from 'react-native';
+import {View, Text, StyleSheet, ImageBackground} from 'react-native';
 import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
 import Container from '../components/Container';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -7,9 +7,9 @@ import {lauchCamera} from 'react-native-image-crop-picker';
 import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
 import ImagePicker from 'react-native-image-crop-picker';
-import {useState} from 'react';
+import {useState, createRef} from 'react';
 
-const editProfile = ({navigation}) => {
+const EditProfile = ({navigation}) => {
   const [image, setImage] = useState();
   const takePhotoFromCamera = () => {
     ImagePicker.openCamera({
@@ -69,9 +69,9 @@ const editProfile = ({navigation}) => {
   );
 
   const fall = new Animated.Value(1);
-  const bs = React.createRef();
+  const bs = createRef();
   return (
-    <View>
+    <Container>
       <BottomSheet
         ref={bs}
         snapPoints={[300, -150]}
@@ -108,7 +108,7 @@ const editProfile = ({navigation}) => {
           <AntDesign name="user" size={20} style={styles.textInput} />
           <TextInput
             placeholder="First Name"
-            placeholderTextColor="#666666"
+            placeholderTextColor="#fff"
             autoCorrect={false}
             style={styles.textInput}
           />
@@ -117,7 +117,7 @@ const editProfile = ({navigation}) => {
           <AntDesign name="user" size={20} style={styles.textInput} />
           <TextInput
             placeholder="Last Name"
-            placeholderTextColor="#666666"
+            placeholderTextColor="#fff"
             autoCorrect={false}
             style={styles.textInput}
           />
@@ -127,7 +127,7 @@ const editProfile = ({navigation}) => {
           <TextInput
             keyboardType="number-pad"
             placeholder="Phone"
-            placeholderTextColor="#666666"
+            placeholderTextColor="#fff"
             autoCorrect={false}
             style={styles.textInput}
           />
@@ -137,7 +137,7 @@ const editProfile = ({navigation}) => {
           <TextInput
             keyboardType="email-address"
             placeholder="Email"
-            placeholderTextColor="#666666"
+            placeholderTextColor="#fff"
             autoCorrect={false}
             style={styles.textInput}
           />
@@ -146,7 +146,7 @@ const editProfile = ({navigation}) => {
           <AntDesign name="earth" size={20} style={styles.textInput} />
           <TextInput
             placeholder="Country"
-            placeholderTextColor="#666666"
+            placeholderTextColor="#fff"
             autoCorrect={false}
             style={styles.textInput}
           />
@@ -155,7 +155,7 @@ const editProfile = ({navigation}) => {
           <AntDesign name="enviromento" size={20} style={styles.textInput} />
           <TextInput
             placeholder="City"
-            placeholderTextColor="#666666"
+            placeholderTextColor="#fff"
             autoCorrect={false}
             style={styles.textInput}
           />
@@ -164,13 +164,13 @@ const editProfile = ({navigation}) => {
           <Text style={styles.panelButtonTitle}>SUBMIT</Text>
         </TouchableOpacity>
       </Animated.View>
-    </View>
+    </Container>
   );
 };
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: '#FFFFFF',
+    // backgroundColor: '#FFFFFF',
     shadowColor: '#333333',
     shadowOffset: {width: -1, height: -1},
     shadowRadius: 2,
@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
   },
   panel: {
     padding: 20,
-    backgroundColor: '#FFFFFF',
+    // backgroundColor: '#FFFFFF',
     paddingTop: 20,
   },
   panelButton: {
@@ -233,17 +233,18 @@ const styles = StyleSheet.create({
   },
   textInput: {
     marginLeft: 15,
+    color: '#fff',
   },
 
   commandButton: {
     padding: 15,
     alignItems: 'center',
+    alignSelf: 'center',
     marginTop: 10,
     backgroundColor: '#FF6347',
     borderRadius: 20,
     width: 300,
     justifyContent: 'center',
-    marginLeft: 55,
   },
 
   panelButtonTitle: {
@@ -258,4 +259,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default editProfile;
+export default EditProfile;

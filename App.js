@@ -20,8 +20,8 @@ import HomeStack from './src/routes/HomeStack';
 import ProfileStack from './src/routes/ProfileStack';
 import Player from './src/components/player/Player';
 import Register from './src/screen/Register';
-import editProfile from './src/screen/editProfile';
-import editprofileStack from './src/routes/editProfileStack';
+import EditProfile from './src/screen/EditProfile';
+import EditProfileStack from './src/routes/EditProfileStack';
 import FavoriteStack from './src/routes/FavoriteStack';
 import PlayListStack from './src/routes/PlayListStack';
 import GenreStack from './src/routes/GenreStack';
@@ -248,15 +248,15 @@ const App = ({navigation}) => {
                   }}
                 />
                 <Stack.Screen
-                  name="editProfile"
-                  component={editProfile}
+                  name="EditProfile"
+                  component={EditProfile}
                   initialParams={{
                     username: state.userName,
                   }}
                 />
                 <Stack.Screen
-                  name="editprofileStack"
-                  component={editprofileStack}
+                  name="EditProfileStack"
+                  component={EditProfileStack}
                   initialParams={{
                     username: state.userName,
                   }}

@@ -30,7 +30,7 @@ const ProfileStack = ({route, navigation}) => {
               <Pressable
                 style={styles.settingBtn}
                 onPress={() => {
-                  navigation.navigate('editprofileStack');
+                  navigation.navigate('EditProfileStack');
                 }}>
                 <Icon name="edit" size={20} color="#fff" />
               </Pressable>

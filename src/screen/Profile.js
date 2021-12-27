@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {View, Text, StyleSheet, Alert} from 'react-native';
 import {Avatar, Title, Caption, TouchableRipple} from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -9,6 +9,7 @@ import AuthContext from '../context/AuthContext';
 
 const Profile = ({navigation, route}) => {
   const {handleLogout} = useContext(AuthContext);
+  const [avatar, setAvatar] = useState('../asset/images/avata_test.jpg');
 
   const {username} = route.params;
 
