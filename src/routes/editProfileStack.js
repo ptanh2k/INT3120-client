@@ -1,31 +1,34 @@
 import React from 'react';
-import {Pressable, StyleSheet} from 'react-native';
+import {Pressable, Dimensions, StyleSheet} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import Icon from 'react-native-vector-icons/AntDesign';
-import Icon2 from 'react-native-vector-icons/Entypo';
-import editProfile from '../screen/editProfile';
-import ProfileStack from './ProfileStack';
+import Entypo from 'react-native-vector-icons/Entypo';
+import EditProfile from '../screen/EditProfile';
+
 const Stack = createStackNavigator();
 
-const editprofileStack = ({navigation}) => {
+const screenWidth = Dimensions.get('window').width;
+
+const EditProfileStack = ({navigation}) => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="editProfile"
-        component={editProfile}
+        name="Edit Profile"
+        component={EditProfile}
         options={{
           headerTitleAlign: 'center',
-          headerTitle: 'Edit Profile',
-
+          headerStyle: {
+            backgroundColor: '#0C0C25',
+          },
+          headerTintColor: '#fff',
           headerLeft: () => {
             return (
               <Pressable
-                style={styles.searchBtn}
+                style={styles.backBtn}
                 onPress={() => {
-                  navigation.navigate('ProfileStack');
+                  navigation.goBack();
                 }}>
-                <Icon2 name="chevron-left" size={20} />
+                <Entypo name="chevron-left" size={20} color="#fff" />
               </Pressable>
             );
           },
@@ -39,6 +42,9 @@ const styles = StyleSheet.create({
   settingBtn: {
     marginRight: 15,
   },
+  backBtn: {
+    marginLeft: screenWidth / 30,
+  },
 });
 
-export default editprofileStack;
+export default EditProfileStack;
