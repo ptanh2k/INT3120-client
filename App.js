@@ -7,6 +7,7 @@
  */
 
 import React, {useEffect, useReducer, useMemo} from 'react';
+import {ToastAndroid} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import SplashScreen from 'react-native-splash-screen';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -53,7 +54,7 @@ const App = ({navigation}) => {
 
       try {
         credentials = await KeyChain.getGenericPassword();
-        if (credentials.password === undefined) {
+        if (!credentials) {
           songService.setToken(null);
         }
         songService.setToken(credentials.password);
@@ -62,7 +63,7 @@ const App = ({navigation}) => {
       }
       dispatch({
         type: ACTIONS.RESTORE_TOKEN,
-        token: credentials.token,
+        token: credentials.password,
         username: credentials.username,
       });
     };
@@ -89,6 +90,11 @@ const App = ({navigation}) => {
             token: user.access_token,
             username: user.username,
           });
+          ToastAndroid.showWithGravity(
+            'Logged in',
+            ToastAndroid.SHORT,
+            ToastAndroid.CENTER,
+          );
         } catch (e) {
           Alert.alert('Wrong credentials');
         }
@@ -98,6 +104,11 @@ const App = ({navigation}) => {
           await KeyChain.resetGenericPassword();
           songService.setToken(null);
           dispatch({type: ACTIONS.LOGOUT});
+          ToastAndroid.showWithGravity(
+            'Logged out',
+            ToastAndroid.SHORT,
+            ToastAndroid.CENTER,
+          );
         } catch (e) {
           console.log('Failed');
         }
@@ -126,6 +137,11 @@ const App = ({navigation}) => {
               token: accessToken.accessToken.toString(),
               username: profile.name,
             });
+            ToastAndroid.showWithGravity(
+              'Logged in',
+              ToastAndroid.SHORT,
+              ToastAndroid.CENTER,
+            );
           }
         } catch (error) {
           Alert.alert('Error:' + error);
@@ -147,6 +163,11 @@ const App = ({navigation}) => {
             token: GoogleToken,
             username: GoogleUser,
           });
+          ToastAndroid.showWithGravity(
+            'Logged in',
+            ToastAndroid.SHORT,
+            ToastAndroid.CENTER,
+          );
         } catch (error) {
           Alert.alert('Error:' + error);
           console.log(error);
@@ -164,7 +185,7 @@ const App = ({navigation}) => {
             screenOptions={{
               headerShown: false,
             }}>
-            {state.userToken === null ? (
+            {state.userToken === null || state.userToken === undefined ? (
               <>
                 <Stack.Screen
                   name="login"

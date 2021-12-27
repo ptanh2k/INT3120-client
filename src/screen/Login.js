@@ -8,7 +8,6 @@ import {
   Keyboard,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  Alert,
 } from 'react-native';
 import {
   GoogleSignin,
@@ -17,6 +16,7 @@ import {
 import Icon from 'react-native-vector-icons/AntDesign';
 
 import AuthContext from '../context/AuthContext';
+import Container from '../components/Container';
 
 const Divider = props => {
   return (
@@ -44,7 +44,7 @@ const Login = ({navigation}) => {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View style={styles.container}>
+      <Container style={styles.container}>
         <View style={styles.up}>
           <Image
             style={styles.logo}
@@ -111,7 +111,7 @@ const Login = ({navigation}) => {
             </TouchableOpacity>
           </View>
         </View>
-      </View>
+      </Container>
     </TouchableWithoutFeedback>
   );
 };
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'stretch',
-    backgroundColor: '#0C3D77',
+    // backgroundColor: '#0C3D77',
   },
   up: {
     flex: 3,

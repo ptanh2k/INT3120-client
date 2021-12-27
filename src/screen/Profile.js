@@ -115,7 +115,9 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
   },
-  userInfoSection: {},
+  userInfoSection: {
+    marginLeft: 30,
+  },
   avatarAndName: {
     flexDirection: 'row',
     marginLeft: 15,
