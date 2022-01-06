@@ -1,6 +1,31 @@
-## Giao diện bài tập lớn môn Phát triển ứng dụng di động
+# Giao diện bài tập lớn môn Phát triển ứng dụng di động
 
-### Các package đã cài đặt:
+## Đề tài
+
+- Ứng dụng nghe nhạc cho thiết bị Android
+
+## Người phát triển
+
+- Phạm Tuấn Anh
+- Lê Minh Hoàng
+
+## Môi trường phát triển
+
+- Code Editor: Visual Studio Code, Android Studio
+- Ngôn ngữ phát triển: JavaScript, Java
+- Công nghệ sử dụng: React Native
+
+## Yêu cầu phần cứng
+
+- Android version: 10+
+
+## Yêu cầu môi trường
+
+- Java 16
+- React Native 0.65
+- API Level 29
+
+### Các package đã cài đặt
 
 - React Navigation:
   https://reactnavigation.org/docs/getting-started/
