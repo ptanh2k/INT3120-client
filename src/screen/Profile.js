@@ -78,7 +78,7 @@ const Profile = ({navigation, route}) => {
               style={styles.heartIcon}
               color="#fff"
             />
-            <Text style={styles.heartText}>Likes</Text>
+            <Text style={styles.heartText}>Favorites</Text>
           </View>
         </TouchableRipple>
 

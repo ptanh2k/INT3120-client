@@ -74,6 +74,7 @@ const PlayListStack = ({route, navigation}) => {
                     onDismiss={() => setVisible(false)}
                     contentContainerStyle={styles.containerStyle}>
                     <TextInput
+                      style={styles.inputsStyle}
                       placeholder="Enter your custom playlist name"
                       onChangeText={text => setListName(text)}
                       defaultValue={listName}
@@ -109,8 +110,9 @@ const styles = StyleSheet.create({
   addBtn: {
     marginRight: screenWidth / 30,
   },
+  inputsStyle: {},
   containerStyle: {
-    backgroundColor: 'white',
+    backgroundColor: 'black',
     padding: 20,
     marginLeft: screenWidth / 20,
     marginRight: screenWidth / 20,
