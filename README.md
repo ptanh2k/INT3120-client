@@ -22,7 +22,7 @@
 ## Yêu cầu môi trường
 
 - Java 16
-- React Native 0.65
+- React Native 0.65git
 - API Level 29
 
 ### Các package đã cài đặt
@@ -57,3 +57,5 @@
 
 - "react-native-keychain":
   https://github.com/oblador/react-native-keychain
+
+API được phát triển và sử dụng trong project: https://github.com/chun144/INT3120-server
